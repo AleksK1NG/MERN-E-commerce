@@ -6,6 +6,7 @@ export const useForm = (initialValues) => {
   return [
     values,
     (e) => {
+      console.log('values => ', values)
       setValues({
         ...values,
         [e.target.name]: e.target.value
@@ -13,3 +14,4 @@ export const useForm = (initialValues) => {
     }
   ]
 }
+// <input name="email" value={values.email} onChange={handleChange} />
