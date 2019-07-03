@@ -10,6 +10,7 @@ import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 import { Helmet } from 'react-helmet'
 
 import './App.css'
+import Header from './components/Layout/Header/Header'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
@@ -29,6 +30,7 @@ const App = ({ loadUser }) => {
               <title>E-commerce</title>
               <link rel="canonical" href="http://github.com/AleksK1NG" />
             </Helmet>
+            <Header />
             <Switch>
               <Route component={Routes} />
             </Switch>
