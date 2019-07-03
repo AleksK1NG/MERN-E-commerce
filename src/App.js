@@ -11,7 +11,6 @@ import { Helmet } from 'react-helmet'
 
 import './App.css'
 
-const HomeView = React.lazy(() => import('./views/HomeView/HomeView'))
 const Routes = React.lazy(() => import('./routes/routes'))
 
 const App = ({ loadUser }) => {
@@ -27,12 +26,10 @@ const App = ({ loadUser }) => {
           <Fragment>
             <Helmet>
               <meta charSet="utf-8" />
-              <title>Alexander</title>
+              <title>E-commerce</title>
               <link rel="canonical" href="http://github.com/AleksK1NG" />
             </Helmet>
-            {/*<Navbar />*/}
             <Switch>
-              <Route exact path="/" component={HomeView} />
               <Route component={Routes} />
             </Switch>
           </Fragment>
