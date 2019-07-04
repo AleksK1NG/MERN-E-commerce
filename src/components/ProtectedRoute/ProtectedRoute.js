@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import { Route, Redirect } from 'react-router-dom'
 
-import { isAuthenticatedSelector } from '../../ducks/auth/authSelectors'
+import { isAuthenticatedSelector } from '../../storeModules/auth/authSelectors'
 import { checkTokenValidity } from '../../utils/checkTokenValidity'
 
 const ProtectedRoute = ({ isAuthorized, component: Component, ...rest }) => {

@@ -4,12 +4,13 @@ import { Route, Switch } from 'react-router-dom'
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { loadUser } from './ducks/auth/authActions'
+import { loadUser } from './storeModules/auth/authActions'
 import Spinner from './components/Shared/Spinner/Spinner'
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 import { Helmet } from 'react-helmet'
 
 import './App.css'
+import Header from './components/Layout/Header/Header'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
@@ -29,6 +30,7 @@ const App = ({ loadUser }) => {
               <title>E-commerce</title>
               <link rel="canonical" href="http://github.com/AleksK1NG" />
             </Helmet>
+            <Header />
             <Switch>
               <Route component={Routes} />
             </Switch>

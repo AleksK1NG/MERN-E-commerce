@@ -21,7 +21,6 @@ import {
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS
 } from './authConstants'
-import { CLEAR_PROFILE_SUCCESS, GET_CURRENT_PROFILE_REQUEST } from '../profile/profileConstants'
 
 /**
  * Sagas
@@ -68,10 +67,6 @@ export function* loginSaga(action) {
       payload: { data }
     })
 
-    yield put({
-      type: GET_CURRENT_PROFILE_REQUEST
-    })
-
     yield put(replace('/'))
     toast.success('You are logged in ! =D')
   } catch (error) {
@@ -109,9 +104,6 @@ export function* logoutSaga() {
 
     yield put({
       type: SIGN_OUT_SUCCESS
-    })
-    yield put({
-      type: CLEAR_PROFILE_SUCCESS
     })
 
     localStorage.removeItem('mern-dev')
@@ -160,4 +152,3 @@ export function* saga() {
     takeEvery(UPDATE_USER_REQUEST, updateUserSaga)
   ])
 }
-
