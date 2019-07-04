@@ -3,12 +3,14 @@ import './Signin.styles.scss'
 import { useForm } from '../../../hooks/useForm'
 
 const Signin = () => {
-  const [values, handleChange] = useForm({ email: '', password: '' })
+  const [values, handleChange, setValues] = useForm({ email: '', password: '' })
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     console.log('Submit form => ', values)
+
+    setValues({ email: '', password: '' })
   }
 
   return (
