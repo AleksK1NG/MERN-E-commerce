@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from '../../../hooks/useForm'
 import FormInput from '../../Shared/FormInput/FormInput'
 import './Signin.styles.scss'
+import CustomButton from '../../Shared/CustomButton/CustomButton'
 
 const Signin = () => {
   const [values, handleChange, setValues] = useForm({ email: '', password: '' })
@@ -30,7 +31,7 @@ const Signin = () => {
           label="Password"
         />
 
-        <input type="submit" value="Submit form" />
+        <CustomButton type="submit"> Sign in </CustomButton>
       </form>
     </div>
   )
