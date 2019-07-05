@@ -27,7 +27,7 @@ import {
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS
 } from './authConstants'
-import { auth } from '../../firebase/firebase.utils'
+import { auth, createUserProfileDocument, getCurrentUser, googleProvider } from '../../firebase/firebase.utils'
 
 /**
  * Sagas
@@ -151,18 +151,41 @@ export function* updateUserSaga(action) {
 }
 
 // firebase
-export function* signInWithEmailSaga({ payload }) {
-  const {
-    userData: { email, password }
-  } = payload
+export function* getSnapshotFromUserAuth(userAuth, additionalData) {
   debugger
   try {
-    const { user } = yield call(auth.signInWithEmailAndPassword, email, password)
-
+    const userRef = yield call(createUserProfileDocument, userAuth, additionalData)
+    const userSnapshot = yield userRef.get()
+    const user = { id: userSnapshot.id, ...userSnapshot.data() }
     yield put({
       type: SIGN_IN_WITH_EMAIL_SUCCESS,
       payload: { user }
     })
+    debugger
+  } catch (error) {
+    yield put({
+      type: SIGN_UP_WITH_EMAIL_ERROR,
+      payload: { error }
+    })
+    console.error(error)
+    toast.error('Error')
+  }
+}
+
+// firebase
+export function* signInWithEmailSaga({ payload }) {
+  const {
+    userData: { email, password }
+  } = payload
+
+  try {
+    const { user } = yield auth.signInWithEmailAndPassword(email, password)
+    yield getSnapshotFromUserAuth(user)
+
+    // yield put({
+    //   type: SIGN_IN_WITH_EMAIL_SUCCESS,
+    //   payload: { user }
+    // })
     debugger
     // yield put(replace('/profile'))
     toast.success('Your profile successfully has been updated =D')
@@ -181,16 +204,16 @@ export function* signUpWithEmailSaga({ payload }) {
   const {
     userData: { email, password, displayName }
   } = payload
-  debugger
+
   try {
-    // const { user } = yield call(auth.createUserWithEmailAndPassword, email, password)
-    // const newUser = { ...user, additionalData: { displayName } }
-    //
-    // yield put({
-    //   type: SIGN_UP_WITH_EMAIL_SUCCESS,
-    //   payload: { newUser }
-    // })
-    // debugger
+    const { user } = yield auth.createUserWithEmailAndPassword(email, password)
+    const newUser = { ...user, additionalData: { displayName } }
+
+    yield put({
+      type: SIGN_UP_WITH_EMAIL_SUCCESS,
+      payload: { newUser }
+    })
+    debugger
     // yield put(replace('/profile'))
     toast.success('Your profile successfully has been updated =D')
   } catch (error) {

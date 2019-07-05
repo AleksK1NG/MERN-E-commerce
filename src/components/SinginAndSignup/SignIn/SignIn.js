@@ -1,18 +1,25 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { useForm } from '../../../hooks/useForm'
 import FormInput from '../../Shared/FormInput/FormInput'
 import './Signin.styles.scss'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
 import { signInWithGoogle } from '../../../firebase/firebase.utils'
+import { signInWithEmail } from '../../../storeModules/auth/authActions'
+import { toast } from 'react-toastify'
 
-const SignIn = () => {
+const SignIn = ({ signInWithEmail }) => {
   const [values, handleChange, setValues] = useForm({ email: '', password: '' })
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
     console.log('Submit form => ', values)
+    if (!values.email || !values.password) {
+      return toast.error('Passwords and Email is required')
+    }
 
+    signInWithEmail(values)
     setValues({ email: '', password: '' })
   }
 
@@ -44,4 +51,7 @@ const SignIn = () => {
   )
 }
 
-export default SignIn
+export default connect(
+  null,
+  { signInWithEmail }
+)(SignIn)
