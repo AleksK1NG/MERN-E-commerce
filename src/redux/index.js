@@ -22,6 +22,8 @@ const store = createStore(reducer, enhancer)
 sagaMiddleware.run(saga)
 
 // Dev only
-window.store = store
+if (process.browser && process.env.NODE_ENV === 'development') {
+  window.store = store
+}
 
 export default store
