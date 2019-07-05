@@ -8,6 +8,8 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_IN_WITH_EMAIL_ERROR,
   SIGN_IN_WITH_EMAIL_SUCCESS,
+  SIGN_OUT_FB_ERROR,
+  SIGN_OUT_FB_SUCCESS,
   SIGN_OUT_SUCCESS,
   SIGN_UP_ERROR,
   SIGN_UP_REQUEST,
@@ -60,12 +62,14 @@ export default function reducer(state = ReducerRecord, action) {
         .set('isAuthenticated', true)
         .set('error', null)
 
+    case SIGN_OUT_FB_SUCCESS:
     case SIGN_OUT_SUCCESS:
       return state
         .set('isLoading', false)
         .set('isAuthenticated', false)
         .set('user', null)
 
+    case SIGN_OUT_FB_ERROR:
     case SIGN_UP_WITH_EMAIL_ERROR:
     case SIGN_IN_WITH_EMAIL_ERROR:
     case UPDATE_USER_ERROR:

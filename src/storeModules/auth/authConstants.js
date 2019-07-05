@@ -32,3 +32,8 @@ export const SIGN_UP_WITH_EMAIL_SUCCESS = `${prefix}/SIGN_UP_WITH_EMAIL_SUCCESS`
 export const SIGN_UP_WITH_EMAIL_ERROR = `${prefix}/SIGN_UP_WITH_EMAIL_ERROR`
 
 export const CHECK_USER_SESSION_REQUEST = `${prefix}/CHECK_USER_SESSION_REQUEST`
+
+
+export const SIGN_OUT_FB_REQUEST = `${prefix}/SIGN_OUT_FB_REQUEST`
+export const SIGN_OUT_FB_SUCCESS = `${prefix}/SIGN_OUT_FB_SUCCESS`
+export const SIGN_OUT_FB_ERROR = `${prefix}/SIGN_OUT_FB_ERROR`

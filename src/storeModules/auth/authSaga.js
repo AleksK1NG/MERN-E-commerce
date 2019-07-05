@@ -16,6 +16,9 @@ import {
   SIGN_IN_WITH_EMAIL_REQUEST,
   SIGN_IN_WITH_EMAIL_SUCCESS,
   SIGN_OUT_ERROR,
+  SIGN_OUT_FB_ERROR,
+  SIGN_OUT_FB_REQUEST,
+  SIGN_OUT_FB_SUCCESS,
   SIGN_OUT_REQUEST,
   SIGN_OUT_SUCCESS,
   SIGN_UP_ERROR,
@@ -28,7 +31,7 @@ import {
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS
 } from './authConstants'
-import { auth, createUserProfileDocument, getCurrentUser, googleProvider } from '../../firebase/firebase.utils'
+import { auth, createUserProfileDocument, getCurrentUser } from '../../firebase/firebase.utils'
 
 /**
  * Sagas
@@ -188,7 +191,7 @@ export function* signInWithEmailSaga({ payload }) {
     // })
 
     // yield put(replace('/profile'))
-    toast.success('Your profile successfully has been updated =D')
+    toast.success('You are logged in, success')
   } catch (error) {
     yield put({
       type: SIGN_IN_WITH_EMAIL_ERROR,
@@ -215,7 +218,7 @@ export function* signUpWithEmailSaga({ payload }) {
     })
     debugger
     // yield put(replace('/profile'))
-    toast.success('Your profile successfully has been updated =D')
+    toast.success('You are registered, success ')
   } catch (error) {
     yield put({
       type: SIGN_UP_WITH_EMAIL_ERROR,
@@ -225,15 +228,13 @@ export function* signUpWithEmailSaga({ payload }) {
     toast.error(rejectError(error))
   }
 }
-
 
 // firebase load user is exists
 export function* isUserAuthenticatedSaga() {
-
   try {
-    const userAuth = yield getCurrentUser();
-    if (!userAuth) return;
-    yield getSnapshotFromUserAuth(userAuth);
+    const userAuth = yield getCurrentUser()
+    if (!userAuth) return
+    yield getSnapshotFromUserAuth(userAuth)
   } catch (error) {
     yield put({
       type: SIGN_UP_WITH_EMAIL_ERROR,
@@ -244,6 +245,22 @@ export function* isUserAuthenticatedSaga() {
   }
 }
 
+export function* signOutFbSaga() {
+  try {
+    yield auth.signOut()
+    yield put({
+      type: SIGN_OUT_FB_SUCCESS
+    })
+    yield put(replace('/'))
+    toast.warn('You are logged out')
+  } catch (error) {
+    yield put({
+      type: SIGN_OUT_FB_ERROR
+    })
+    console.error(error)
+    toast.error(rejectError(error))
+  }
+}
 
 export function* saga() {
   yield all([
@@ -254,6 +271,7 @@ export function* saga() {
     takeEvery(UPDATE_USER_REQUEST, updateUserSaga),
     takeLatest(SIGN_IN_WITH_EMAIL_REQUEST, signInWithEmailSaga),
     takeLatest(SIGN_UP_WITH_EMAIL_REQUEST, signUpWithEmailSaga),
-    takeLatest(CHECK_USER_SESSION_REQUEST, isUserAuthenticatedSaga)
+    takeLatest(CHECK_USER_SESSION_REQUEST, isUserAuthenticatedSaga),
+    takeLatest(SIGN_OUT_FB_REQUEST, signOutFbSaga)
   ])
 }

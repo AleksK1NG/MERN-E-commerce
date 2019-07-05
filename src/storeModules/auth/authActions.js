@@ -9,7 +9,8 @@ import {
   SIGN_OUT_REQUEST,
   SIGN_IN_WITH_EMAIL_REQUEST,
   SIGN_UP_WITH_EMAIL_REQUEST,
-  CHECK_USER_SESSION_REQUEST
+  CHECK_USER_SESSION_REQUEST,
+  SIGN_OUT_FB_REQUEST
 } from './authConstants'
 
 export const registerUser = (userData) => {
@@ -64,4 +65,8 @@ export const signUpWithEmail = (userData) => {
 // firebase load user is exists
 export const checkUserSession = () => ({
   type: CHECK_USER_SESSION_REQUEST
+})
+
+export const sighOutFbAuth = () => ({
+  type: SIGN_OUT_FB_REQUEST
 })

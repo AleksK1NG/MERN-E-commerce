@@ -3,10 +3,10 @@ import {connect} from 'react-redux'
 import './Header.styles.scss'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../../assets/crown.svg'
-import { auth } from '../../../firebase/firebase.utils'
 import { userSelector } from '../../../storeModules/auth/authSelectors'
+import { sighOutFbAuth } from '../../../storeModules/auth/authActions'
 
-const Header = ({ user }) => {
+const Header = ({ user, sighOutFbAuth }) => {
   return (
     <div className="header">
       <Link to="/" className="logo-container">
@@ -21,7 +21,7 @@ const Header = ({ user }) => {
           CONTACTS
         </Link>
         {user ? (
-          <div className="option" onClick={() => auth.signOut()}>
+          <div className="option" onClick={sighOutFbAuth}>
             SIGN OUT
           </div>
         ) : (
@@ -36,6 +36,6 @@ const Header = ({ user }) => {
 
 export default connect(state => ({
   user: userSelector(state)
-}), null)(Header)
+}), {sighOutFbAuth})(Header)
 
 //https://facebook.github.io/create-react-app/docs/adding-images-fonts-and-files
