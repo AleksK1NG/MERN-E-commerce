@@ -7,7 +7,7 @@ import {
   SIGN_UP_REQUEST,
   UPDATE_USER_REQUEST,
   SIGN_OUT_REQUEST,
-  SIGN_IN_WITH_EMAIL_REQUEST
+  SIGN_IN_WITH_EMAIL_REQUEST, SIGN_UP_WITH_EMAIL_REQUEST
 } from './authConstants'
 
 export const registerUser = (userData) => {
@@ -48,5 +48,12 @@ export const signInWithEmail = ({ email, password }) => {
   return {
     type: SIGN_IN_WITH_EMAIL_REQUEST,
     payload: { email, password }
+  }
+}
+
+export const signUpWithEmail = (userData) => {
+  return {
+    type: SIGN_UP_WITH_EMAIL_REQUEST,
+    payload: { userData }
   }
 }

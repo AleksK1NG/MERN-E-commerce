@@ -5,13 +5,13 @@ import CustomButton from '../../Shared/CustomButton/CustomButton'
 
 import './Signup.styles.scss'
 
-const Signup = () => {
+const SignUp = () => {
   const [values, handleChange, setValues] = useForm({ email: '', password: '', confirmPassword: '', displayName: '' })
 
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    console.log('Submit form => ', values)
+    console.log('Submit SignUp form => ', values)
 
     setValues({ email: '', password: '', confirmPassword: '', displayName: '' })
   }
@@ -54,4 +54,4 @@ const Signup = () => {
   )
 }
 
-export default Signup
+export default SignUp
