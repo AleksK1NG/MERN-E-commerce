@@ -5,7 +5,7 @@ import Signup from '../../components/SinginAndSignup/Signup/Signup'
 
 const SigninAndSignupPage = () => {
   return (
-    <div>
+    <div className="sign-in-and-sign-up">
       <Signin />
       <Signup />
     </div>
