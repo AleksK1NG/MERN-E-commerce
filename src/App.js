@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, Fragment } from 'react'
+import React, { Suspense, useEffect, Fragment, useState } from 'react'
 import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 
@@ -11,14 +11,24 @@ import { Helmet } from 'react-helmet'
 
 import './App.css'
 import Header from './components/Layout/Header/Header'
+import { auth } from './firebase/firebase.utils'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
 const App = ({ loadUser }) => {
+  const [currentUser, setCurrentUser] = useState(null)
+
   useEffect(() => {
     // loadUser()
-    console.log('App is running =D')
-  }, [loadUser])
+    const unSubscribe = auth.onAuthStateChanged((user) => {
+      console.log('firebase auth user => ', user)
+      setCurrentUser((currentUser) => user)
+      console.log('currentUser => ', currentUser)
+    })
+    return () => {
+      unSubscribe()
+    }
+  }, [setCurrentUser, currentUser])
 
   return (
     <Fragment>
@@ -30,7 +40,7 @@ const App = ({ loadUser }) => {
               <title>E-commerce</title>
               <link rel="canonical" href="http://github.com/AleksK1NG" />
             </Helmet>
-            <Header />
+            <Header currentUser={currentUser} />
             <Switch>
               <Route component={Routes} />
             </Switch>
