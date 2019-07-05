@@ -152,9 +152,12 @@ export function* updateUserSaga(action) {
 
 // firebase
 export function* signInWithEmailSaga({ payload }) {
+  const {
+    userData: { email, password }
+  } = payload
   debugger
   try {
-    const { user } = yield call(auth.signInWithEmailAndPassword, payload)
+    const { user } = yield call(auth.signInWithEmailAndPassword, email, password)
 
     yield put({
       type: SIGN_IN_WITH_EMAIL_SUCCESS,
@@ -173,18 +176,21 @@ export function* signInWithEmailSaga({ payload }) {
   }
 }
 
+// firebase
 export function* signUpWithEmailSaga({ payload }) {
-  const { email, password, displayName } = payload
+  const {
+    userData: { email, password, displayName }
+  } = payload
   debugger
   try {
-    const { user } = yield call(auth.createUserWithEmailAndPassword, email, password)
-    const newUser = { ...user, additionalData: { displayName } }
-
-    yield put({
-      type: SIGN_UP_WITH_EMAIL_SUCCESS,
-      payload: { newUser }
-    })
-    debugger
+    // const { user } = yield call(auth.createUserWithEmailAndPassword, email, password)
+    // const newUser = { ...user, additionalData: { displayName } }
+    //
+    // yield put({
+    //   type: SIGN_UP_WITH_EMAIL_SUCCESS,
+    //   payload: { newUser }
+    // })
+    // debugger
     // yield put(replace('/profile'))
     toast.success('Your profile successfully has been updated =D')
   } catch (error) {
