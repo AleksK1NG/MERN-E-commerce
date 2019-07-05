@@ -155,7 +155,7 @@ export function* updateUserSaga(action) {
 }
 
 // firebase
-export function* getSnapshotFromUserAuth(userAuth, additionalData) {
+export function* getSnapshotFromUserAuthSaga(userAuth, additionalData) {
   try {
     const userRef = yield call(createUserProfileDocument, userAuth, additionalData)
     const userSnapshot = yield userRef.get()
@@ -183,14 +183,14 @@ export function* signInWithEmailSaga({ payload }) {
 
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password)
-    yield getSnapshotFromUserAuth(user)
+    yield getSnapshotFromUserAuthSaga(user)
 
     // yield put({
     //   type: SIGN_IN_WITH_EMAIL_SUCCESS,
     //   payload: { user }
     // })
 
-    // yield put(replace('/profile'))
+    yield put(replace('/shop'))
     toast.success('You are logged in, success')
   } catch (error) {
     yield put({
@@ -234,7 +234,7 @@ export function* isUserAuthenticatedSaga() {
   try {
     const userAuth = yield getCurrentUser()
     if (!userAuth) return
-    yield getSnapshotFromUserAuth(userAuth)
+    yield getSnapshotFromUserAuthSaga(userAuth)
   } catch (error) {
     yield put({
       type: SIGN_UP_WITH_EMAIL_ERROR,
@@ -261,6 +261,10 @@ export function* signOutFbSaga() {
     toast.error(rejectError(error))
   }
 }
+
+// export function* signInAfterSignUpSaga({ payload: { user, additionalData } }) {
+//   yield getSnapshotFromUserAuthSaga(user, additionalData)
+// }
 
 export function* saga() {
   yield all([
