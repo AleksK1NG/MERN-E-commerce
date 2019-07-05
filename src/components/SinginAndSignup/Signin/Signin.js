@@ -32,11 +32,13 @@ const Signin = () => {
           label="Password"
         />
 
-        <CustomButton type="submit"> Sign in </CustomButton>
-        <CustomButton onClick={signInWithGoogle} type="submit">
-          {' '}
-          Sign in With Google{' '}
-        </CustomButton>
+        <div className="buttons">
+          <CustomButton type="submit"> Sign in </CustomButton>
+          <CustomButton onClick={signInWithGoogle} isGoogleSignin>
+            {' '}
+            Sign in With Google{' '}
+          </CustomButton>
+        </div>
       </form>
     </div>
   )
