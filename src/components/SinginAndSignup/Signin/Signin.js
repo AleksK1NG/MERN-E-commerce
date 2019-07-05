@@ -3,6 +3,7 @@ import { useForm } from '../../../hooks/useForm'
 import FormInput from '../../Shared/FormInput/FormInput'
 import './Signin.styles.scss'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
+import { signInWithGoogle } from '../../../firebase/firebase.utils'
 
 const Signin = () => {
   const [values, handleChange, setValues] = useForm({ email: '', password: '' })
@@ -32,6 +33,10 @@ const Signin = () => {
         />
 
         <CustomButton type="submit"> Sign in </CustomButton>
+        <CustomButton onClick={signInWithGoogle} type="submit">
+          {' '}
+          Sign in With Google{' '}
+        </CustomButton>
       </form>
     </div>
   )
