@@ -1,7 +1,7 @@
 import { replace } from 'connected-react-router'
 import { toast } from 'react-toastify'
 
-import { takeEvery, call, put, all } from 'redux-saga/effects'
+import { takeEvery, call, put, all, takeLatest } from 'redux-saga/effects'
 import { rejectError } from '../../utils/rejectErrorHelper'
 import api from '../../services/api'
 import {
@@ -152,7 +152,6 @@ export function* updateUserSaga(action) {
 
 // firebase
 export function* getSnapshotFromUserAuth(userAuth, additionalData) {
-  debugger
   try {
     const userRef = yield call(createUserProfileDocument, userAuth, additionalData)
     const userSnapshot = yield userRef.get()
@@ -186,7 +185,7 @@ export function* signInWithEmailSaga({ payload }) {
     //   type: SIGN_IN_WITH_EMAIL_SUCCESS,
     //   payload: { user }
     // })
-    debugger
+
     // yield put(replace('/profile'))
     toast.success('Your profile successfully has been updated =D')
   } catch (error) {
@@ -233,7 +232,7 @@ export function* saga() {
     takeEvery(SIGN_IN_REQUEST, loginSaga),
     takeEvery(SIGN_OUT_REQUEST, logoutSaga),
     takeEvery(UPDATE_USER_REQUEST, updateUserSaga),
-    takeEvery(SIGN_IN_WITH_EMAIL_REQUEST, signInWithEmailSaga),
-    takeEvery(SIGN_UP_WITH_EMAIL_REQUEST, signUpWithEmailSaga)
+    takeLatest(SIGN_IN_WITH_EMAIL_REQUEST, signInWithEmailSaga),
+    takeLatest(SIGN_UP_WITH_EMAIL_REQUEST, signUpWithEmailSaga)
   ])
 }

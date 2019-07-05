@@ -14,7 +14,6 @@ const SignIn = ({ signInWithEmail }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    console.log('Submit form => ', values)
     if (!values.email || !values.password) {
       return toast.error('Passwords and Email is required')
     }

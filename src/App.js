@@ -55,7 +55,7 @@ const App = ({ loadUser }) => {
               <title>E-commerce</title>
               <link rel="canonical" href="http://github.com/AleksK1NG" />
             </Helmet>
-            <Header currentUser={currentUser} />
+            <Header />
             <Switch>
               <Route component={Routes} />
             </Switch>

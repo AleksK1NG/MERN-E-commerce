@@ -14,8 +14,6 @@ const SignUp = ({ signUpWithEmail }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
 
-    console.log('Submit SignUp form => ', values)
-
     if (values.password !== values.confirmPassword) {
       return toast.error('Passwords doesnt match')
     }
