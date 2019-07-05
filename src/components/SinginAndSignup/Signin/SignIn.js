@@ -5,7 +5,7 @@ import './Signin.styles.scss'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
 import { signInWithGoogle } from '../../../firebase/firebase.utils'
 
-const Signin = () => {
+const SignIn = () => {
   const [values, handleChange, setValues] = useForm({ email: '', password: '' })
 
   const handleSubmit = (e) => {
@@ -44,4 +44,4 @@ const Signin = () => {
   )
 }
 
-export default Signin
+export default SignIn

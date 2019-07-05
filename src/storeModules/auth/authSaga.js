@@ -20,6 +20,9 @@ import {
   SIGN_UP_ERROR,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
+  SIGN_UP_WITH_EMAIL_ERROR,
+  SIGN_UP_WITH_EMAIL_REQUEST,
+  SIGN_UP_WITH_EMAIL_SUCCESS,
   UPDATE_USER_ERROR,
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS
@@ -147,14 +150,15 @@ export function* updateUserSaga(action) {
   }
 }
 
+// firebase
 export function* signInWithEmailSaga({ payload }) {
   debugger
   try {
-    const { data } = yield call(auth.signInWithEmailAndPassword, payload)
+    const { user } = yield call(auth.signInWithEmailAndPassword, payload)
 
     yield put({
       type: SIGN_IN_WITH_EMAIL_SUCCESS,
-      payload: { data }
+      payload: { user }
     })
     debugger
     // yield put(replace('/profile'))
@@ -169,6 +173,30 @@ export function* signInWithEmailSaga({ payload }) {
   }
 }
 
+export function* signUpWithEmailSaga({ payload }) {
+  const { email, password, displayName } = payload
+  debugger
+  try {
+    const { user } = yield call(auth.createUserWithEmailAndPassword, email, password)
+    const newUser = { ...user, additionalData: { displayName } }
+
+    yield put({
+      type: SIGN_UP_WITH_EMAIL_SUCCESS,
+      payload: { newUser }
+    })
+    debugger
+    // yield put(replace('/profile'))
+    toast.success('Your profile successfully has been updated =D')
+  } catch (error) {
+    yield put({
+      type: SIGN_UP_WITH_EMAIL_ERROR,
+      payload: { error }
+    })
+    console.error(error)
+    toast.error(rejectError(error))
+  }
+}
+
 export function* saga() {
   yield all([
     takeEvery(SIGN_UP_REQUEST, registerSaga),
@@ -176,6 +204,7 @@ export function* saga() {
     takeEvery(SIGN_IN_REQUEST, loginSaga),
     takeEvery(SIGN_OUT_REQUEST, logoutSaga),
     takeEvery(UPDATE_USER_REQUEST, updateUserSaga),
-    takeEvery(SIGN_IN_WITH_EMAIL_REQUEST, signInWithEmailSaga)
+    takeEvery(SIGN_IN_WITH_EMAIL_REQUEST, signInWithEmailSaga),
+    takeEvery(SIGN_UP_WITH_EMAIL_REQUEST, signUpWithEmailSaga)
   ])
 }
