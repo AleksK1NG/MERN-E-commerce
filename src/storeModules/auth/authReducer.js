@@ -6,6 +6,8 @@ import {
   SIGN_IN_ERROR,
   SIGN_IN_REQUEST,
   SIGN_IN_SUCCESS,
+  SIGN_IN_WITH_EMAIL_ERROR,
+  SIGN_IN_WITH_EMAIL_SUCCESS,
   SIGN_OUT_SUCCESS,
   SIGN_UP_ERROR,
   SIGN_UP_REQUEST,
@@ -62,6 +64,7 @@ export default function reducer(state = ReducerRecord, action) {
         .set('isAuthenticated', false)
         .set('user', null)
 
+    case SIGN_IN_WITH_EMAIL_ERROR:
     case UPDATE_USER_ERROR:
     case SIGN_IN_ERROR:
     case SIGN_UP_ERROR:
@@ -73,6 +76,13 @@ export default function reducer(state = ReducerRecord, action) {
         .merge({ user: fromJS(payload.data) })
         .set('error', null)
         .set('isLoading', false)
+
+    case SIGN_IN_WITH_EMAIL_SUCCESS:
+      return state
+        .set('user', fromJS(payload.data))
+        .set('error', null)
+        .set('isLoading', false)
+        .set('isAuthenticated', true)
 
     default:
       return state

@@ -22,3 +22,8 @@ export const SIGN_OUT_ERROR = `${prefix}/SIGN_OUT_ERROR`
 export const UPDATE_USER_REQUEST = `${prefix}/UPDATE_USER_REQUEST`
 export const UPDATE_USER_SUCCESS = `${prefix}/UPDATE_USER_SUCCESS`
 export const UPDATE_USER_ERROR = `${prefix}/UPDATE_USER_ERROR`
+
+
+export const SIGN_IN_WITH_EMAIL_REQUEST = `${prefix}/SIGN_IN_WITH_EMAIL_REQUEST`
+export const SIGN_IN_WITH_EMAIL_SUCCESS = `${prefix}/SIGN_IN_WITH_EMAIL_SUCCESS`
+export const SIGN_IN_WITH_EMAIL_ERROR = `${prefix}/SIGN_IN_WITH_EMAIL_ERROR`
