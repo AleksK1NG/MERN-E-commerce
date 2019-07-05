@@ -25,15 +25,17 @@ const App = ({ loadUser }) => {
         if (userAuth) {
           const userRef = await createUserProfileDocument(userAuth)
 
-          userRef.onSnapshot((snapshot) => {
-            const userObj = { id: snapshot.id, ...snapshot.data() }
-            // return  setCurrentUser((currentUser) => userObj)
-          }, () => {
-            console.log(currentUser)
-          })
+          userRef.onSnapshot(
+            (snapshot) => {
+              // const userObj = { id: snapshot.id, ...snapshot.data() }
+              // return  setCurrentUser((currentUser) => userObj)
+            },
+            () => {
+              console.log(currentUser)
+            }
+          )
         }
-        setCurrentUser(currentUser => userAuth)
-
+        setCurrentUser((currentUser) => userAuth)
       } catch (error) {
         console.error(error)
       }
