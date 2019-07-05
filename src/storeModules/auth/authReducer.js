@@ -9,12 +9,14 @@ import {
   SIGN_IN_WITH_EMAIL_ERROR,
   SIGN_IN_WITH_EMAIL_SUCCESS,
   SIGN_OUT_FB_ERROR,
+  SIGN_OUT_FB_REQUEST,
   SIGN_OUT_FB_SUCCESS,
   SIGN_OUT_SUCCESS,
   SIGN_UP_ERROR,
   SIGN_UP_REQUEST,
   SIGN_UP_SUCCESS,
   SIGN_UP_WITH_EMAIL_ERROR,
+  SIGN_UP_WITH_EMAIL_REQUEST,
   SIGN_UP_WITH_EMAIL_SUCCESS,
   UPDATE_USER_ERROR,
   UPDATE_USER_REQUEST,
@@ -35,6 +37,8 @@ export default function reducer(state = ReducerRecord, action) {
   const { type, payload } = action
 
   switch (type) {
+    case SIGN_OUT_FB_REQUEST:
+    case SIGN_UP_WITH_EMAIL_REQUEST:
     case UPDATE_USER_REQUEST:
     case SIGN_IN_REQUEST:
     case SIGN_UP_REQUEST:

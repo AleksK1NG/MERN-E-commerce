@@ -47,20 +47,16 @@ export const updateUser = (user) => {
 }
 
 // firebase
-export const signInWithEmail = (userData) => {
-  return {
-    type: SIGN_IN_WITH_EMAIL_REQUEST,
-    payload: { userData }
-  }
-}
+export const signInWithEmail = (userData) => ({
+  type: SIGN_IN_WITH_EMAIL_REQUEST,
+  payload: { userData }
+})
 
 // firebase
-export const signUpWithEmail = (userData) => {
-  return {
-    type: SIGN_UP_WITH_EMAIL_REQUEST,
-    payload: { userData }
-  }
-}
+export const signUpWithEmail = (userData) => ({
+  type: SIGN_UP_WITH_EMAIL_REQUEST,
+  payload: { userData }
+})
 
 // firebase load user is exists
 export const checkUserSession = () => ({
