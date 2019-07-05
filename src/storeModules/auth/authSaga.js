@@ -5,6 +5,7 @@ import { takeEvery, call, put, all, takeLatest } from 'redux-saga/effects'
 import { rejectError } from '../../utils/rejectErrorHelper'
 import api from '../../services/api'
 import {
+  CHECK_USER_SESSION_REQUEST,
   LOAD_USER_ERROR,
   LOAD_USER_REQUEST,
   LOAD_USER_SUCCESS,
@@ -160,7 +161,7 @@ export function* getSnapshotFromUserAuth(userAuth, additionalData) {
       type: SIGN_IN_WITH_EMAIL_SUCCESS,
       payload: { user }
     })
-    debugger
+    console.log('SNAPSHOT SAGA user payload => ', user)
   } catch (error) {
     yield put({
       type: SIGN_UP_WITH_EMAIL_ERROR,
@@ -225,6 +226,25 @@ export function* signUpWithEmailSaga({ payload }) {
   }
 }
 
+
+// firebase load user is exists
+export function* isUserAuthenticatedSaga() {
+
+  try {
+    const userAuth = yield getCurrentUser();
+    if (!userAuth) return;
+    yield getSnapshotFromUserAuth(userAuth);
+  } catch (error) {
+    yield put({
+      type: SIGN_UP_WITH_EMAIL_ERROR,
+      payload: { error }
+    })
+    console.error(error)
+    toast.error(rejectError(error))
+  }
+}
+
+
 export function* saga() {
   yield all([
     takeEvery(SIGN_UP_REQUEST, registerSaga),
@@ -233,6 +253,7 @@ export function* saga() {
     takeEvery(SIGN_OUT_REQUEST, logoutSaga),
     takeEvery(UPDATE_USER_REQUEST, updateUserSaga),
     takeLatest(SIGN_IN_WITH_EMAIL_REQUEST, signInWithEmailSaga),
-    takeLatest(SIGN_UP_WITH_EMAIL_REQUEST, signUpWithEmailSaga)
+    takeLatest(SIGN_UP_WITH_EMAIL_REQUEST, signUpWithEmailSaga),
+    takeLatest(CHECK_USER_SESSION_REQUEST, isUserAuthenticatedSaga)
   ])
 }
