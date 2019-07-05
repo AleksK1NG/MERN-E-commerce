@@ -11,6 +11,9 @@ import {
   SIGN_IN_ERROR,
   SIGN_IN_REQUEST,
   SIGN_IN_SUCCESS,
+  SIGN_IN_WITH_EMAIL_ERROR,
+  SIGN_IN_WITH_EMAIL_REQUEST,
+  SIGN_IN_WITH_EMAIL_SUCCESS,
   SIGN_OUT_ERROR,
   SIGN_OUT_REQUEST,
   SIGN_OUT_SUCCESS,
@@ -21,6 +24,7 @@ import {
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS
 } from './authConstants'
+import { auth } from '../../firebase/firebase.utils'
 
 /**
  * Sagas
@@ -143,12 +147,35 @@ export function* updateUserSaga(action) {
   }
 }
 
+export function* signInWithEmailSaga({ payload }) {
+  debugger
+  try {
+    const { data } = yield call(auth.signInWithEmailAndPassword, payload)
+
+    yield put({
+      type: SIGN_IN_WITH_EMAIL_SUCCESS,
+      payload: { data }
+    })
+    debugger
+    // yield put(replace('/profile'))
+    toast.success('Your profile successfully has been updated =D')
+  } catch (error) {
+    yield put({
+      type: SIGN_IN_WITH_EMAIL_ERROR,
+      payload: { error }
+    })
+    console.error(error)
+    toast.error(rejectError(error))
+  }
+}
+
 export function* saga() {
   yield all([
     takeEvery(SIGN_UP_REQUEST, registerSaga),
     takeEvery(LOAD_USER_REQUEST, loadUserSaga),
     takeEvery(SIGN_IN_REQUEST, loginSaga),
     takeEvery(SIGN_OUT_REQUEST, logoutSaga),
-    takeEvery(UPDATE_USER_REQUEST, updateUserSaga)
+    takeEvery(UPDATE_USER_REQUEST, updateUserSaga),
+    takeEvery(SIGN_IN_WITH_EMAIL_REQUEST, signInWithEmailSaga)
   ])
 }

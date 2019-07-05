@@ -6,7 +6,8 @@ import {
   SIGN_IN_REQUEST,
   SIGN_UP_REQUEST,
   UPDATE_USER_REQUEST,
-  SIGN_OUT_REQUEST
+  SIGN_OUT_REQUEST,
+  SIGN_IN_WITH_EMAIL_REQUEST
 } from './authConstants'
 
 export const registerUser = (userData) => {
@@ -39,5 +40,13 @@ export const updateUser = (user) => {
   return {
     type: UPDATE_USER_REQUEST,
     payload: { user }
+  }
+}
+
+// firebase
+export const signInWithEmail = ({ email, password }) => {
+  return {
+    type: SIGN_IN_WITH_EMAIL_REQUEST,
+    payload: { email, password }
   }
 }
