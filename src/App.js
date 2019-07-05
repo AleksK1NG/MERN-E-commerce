@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet'
 
 import './App.css'
 import Header from './components/Layout/Header/Header'
-import { auth } from './firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
@@ -20,10 +20,23 @@ const App = ({ loadUser }) => {
 
   useEffect(() => {
     // loadUser()
-    const unSubscribe = auth.onAuthStateChanged((user) => {
-      console.log('firebase auth user => ', user)
-      setCurrentUser((currentUser) => user)
-      console.log('currentUser => ', currentUser)
+    const unSubscribe = auth.onAuthStateChanged(async (userAuth) => {
+      try {
+        if (userAuth) {
+          const userRef = await createUserProfileDocument(userAuth)
+
+          userRef.onSnapshot((snapshot) => {
+            const userObj = { id: snapshot.id, ...snapshot.data() }
+            // return  setCurrentUser((currentUser) => userObj)
+          }, () => {
+            console.log(currentUser)
+          })
+        }
+        setCurrentUser(currentUser => userAuth)
+
+      } catch (error) {
+        console.error(error)
+      }
     })
     return () => {
       unSubscribe()
