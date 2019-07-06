@@ -6,8 +6,10 @@ import { ReactComponent as Logo } from '../../../assets/crown.svg'
 import { userSelector } from '../../../storeModules/auth/authSelectors'
 import { sighOutFbAuth } from '../../../storeModules/auth/authActions'
 import CartIcon from '../../Cart/CartIcon/CartIcon'
+import CartDropDown from '../../Cart/CartDropDown/CartDropDown'
+import { showCartIconSelector } from '../../../storeModules/ui/uiSelectors'
 
-const Header = ({ user, sighOutFbAuth }) => {
+const Header = ({ user, sighOutFbAuth, showCartIcon }) => {
   return (
     <div className="header">
       <Link to="/" className="logo-container">
@@ -32,13 +34,15 @@ const Header = ({ user, sighOutFbAuth }) => {
         )}
         <CartIcon />
       </div>
+      {showCartIcon && <CartDropDown />}
     </div>
   )
 }
 
 export default connect(
   (state) => ({
-    user: userSelector(state)
+    user: userSelector(state),
+    showCartIcon: showCartIconSelector(state)
   }),
   { sighOutFbAuth }
 )(Header)
