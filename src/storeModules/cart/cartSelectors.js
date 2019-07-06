@@ -10,17 +10,24 @@ export const stateSelector = (state) => state[moduleName]
 export const cartItemsSelector = createSelector(
   stateSelector,
   (state) => {
-    debugger
-    return state.get('cartItems')
+    return state.get('cartItems').toJS()
   }
 )
 
 export const cartItemsCountSelector = createSelector(
   cartItemsSelector,
-  (cartItems) => cartItems.reduce((acc, item) => acc + item, 0)
+  (cartItems) =>
+    cartItems.reduce((acc, item) => {
+      return acc + item.quantity
+    }, 0)
 )
 
 export const cartItemsTotalSelector = createSelector(
   cartItemsSelector,
-  (cartItems) => cartItems.reduce((acc, item) => acc + item.get('quantity') * item.get('price'), 0)
+  (cartItems) => cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0)
 )
+
+// export const cartItemsTotalSelector = createSelector(
+//   cartItemsSelector,
+//   (cartItems) => cartItems.reduce((acc, item) => acc + item.get('quantity') * item.get('price'), 0)
+// )

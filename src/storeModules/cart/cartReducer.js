@@ -10,13 +10,13 @@ export const initialState = fromJS({
 
 export default function reducer(state = initialState, action) {
   const { type, payload } = action
-  // find item exists or not
-  const existingCartItem = state.get('cartItems').find((cartItem) => cartItem.get('id') === payload.item.id)
 
   switch (type) {
     case ADD_CART_ITEM:
       // // find item exists or not
       // const existingCartItem = state.get('cartItems').find((cartItem) => cartItem.get('id') === payload.item.id)
+      // find item exists or not
+      const existingCartItem = state.get('cartItems').find((cartItem) => cartItem.get('id') === payload.item.id)
 
       // if exists update quantity
       if (existingCartItem) {
@@ -30,8 +30,10 @@ export default function reducer(state = initialState, action) {
       return state.update('cartItems', (cartItems) => cartItems.push(fromJS({ ...payload.item, quantity: 1 })))
 
     case DELETE_CART_ITEM:
+      // find item exists or not
+      const existCartItem = state.get('cartItems').find((cartItem) => cartItem.get('id') === payload.item.id)
       // if exists and quantity = 1, delete item
-      if (existingCartItem.get('quantity') === 1) {
+      if (existCartItem.get('quantity') === 1) {
         return state.update('cartItems', (cartItems) =>
           cartItems.filter((cItem) => cItem.get('id') !== payload.item.id)
         )
