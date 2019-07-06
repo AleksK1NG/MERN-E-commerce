@@ -42,7 +42,7 @@ export default function reducer(state = initialState, action) {
       // quantity > 1 decrease quantity
       return state.update('cartItems', (cartItems) =>
         cartItems.map((cItem) =>
-          cItem.get('id') === payload.item.id ? cItem.set('quantity', cItem.get('quantity') + 1) : cItem
+          cItem.get('id') === payload.item.id ? cItem.set('quantity', cItem.get('quantity') - 1) : cItem
         )
       )
 
