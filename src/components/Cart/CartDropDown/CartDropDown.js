@@ -2,14 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import './CartDropDown.styles.scss'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
-import {
-  cartItemsCountSelector,
-  cartItemsSelector,
-  cartItemsTotalSelector
-} from '../../../storeModules/cart/cartSelectors'
+import { cartItemsSelector, cartItemsTotalSelector } from '../../../storeModules/cart/cartSelectors'
 import CartItem from '../CartItem/CartItem'
 
-const CartDropDown = ({ cartItems, cartItemsCount, totalCost }) => {
+const CartDropDown = ({ cartItems, totalCost }) => {
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
@@ -25,7 +21,6 @@ const CartDropDown = ({ cartItems, cartItemsCount, totalCost }) => {
 export default connect(
   (state) => ({
     cartItems: cartItemsSelector(state),
-    cartItemsCount: cartItemsCountSelector(state),
     totalCost: cartItemsTotalSelector(state)
   }),
   {}

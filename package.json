@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "husky": "^3.0.0",
-    "lint-staged": "^9.0.2",
+    "lint-staged": "^9.1.0",
     "prettier": "^1.18.2"
   },
   "proxy": "http://localhost:5000"
