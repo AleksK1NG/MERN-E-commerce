@@ -2,7 +2,7 @@ import React from 'react'
 import './CollectionItem.styles.scss'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
 
-const CollectionItem = ({ id, name, price, imageUrl }) => {
+const CollectionItem = ({ name, price, imageUrl }) => {
   return (
     <div className="collection-item">
       <div style={{ backgroundImage: `url(${imageUrl})` }} className="image" />
