@@ -1,8 +1,12 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './CollectionItem.styles.scss'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
+import { addCartItem } from '../../../storeModules/cart/cartActions'
 
-const CollectionItem = ({ name, price, imageUrl }) => {
+const CollectionItem = ({ item, addCartItem }) => {
+  const { name, price, imageUrl } = item
+
   return (
     <div className="collection-item">
       <div style={{ backgroundImage: `url(${imageUrl})` }} className="image" />
@@ -12,9 +16,14 @@ const CollectionItem = ({ name, price, imageUrl }) => {
         <span className="price">${price}</span>
       </div>
 
-      <CustomButton inverted>Add to CART</CustomButton>
+      <CustomButton onClick={() => addCartItem(item)} inverted>
+        Add to CART
+      </CustomButton>
     </div>
   )
 }
 
-export default React.memo(CollectionItem)
+export default connect(
+  null,
+  { addCartItem }
+)(CollectionItem)

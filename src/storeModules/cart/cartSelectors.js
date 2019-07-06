@@ -9,7 +9,10 @@ export const stateSelector = (state) => state[moduleName]
 
 export const cartItemsSelector = createSelector(
   stateSelector,
-  (state) => state.get('cartItems')
+  (state) => {
+    debugger
+    return state.get('cartItems')
+  }
 )
 
 export const cartItemsCountSelector = createSelector(
