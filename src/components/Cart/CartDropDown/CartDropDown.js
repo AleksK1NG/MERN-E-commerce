@@ -9,8 +9,12 @@ const CartDropDown = ({ cartItems, totalCost }) => {
   return (
     <div className="cart-dropdown">
       <div className="cart-items">
-        {cartItems && cartItems.map((item) => <CartItem item={item} key={item.id} />)}
-        Total cost $: {totalCost}
+        {cartItems.length ? (
+          cartItems.map((item) => <CartItem item={item} key={item.id} />)
+        ) : (
+          <span className="empty-message">Your cart is empty.</span>
+        )}
+        {cartItems.length > 0 && <span>Total cost $: {totalCost}</span>}
       </div>
 
       <CustomButton>GO TO CHECKOUT</CustomButton>
