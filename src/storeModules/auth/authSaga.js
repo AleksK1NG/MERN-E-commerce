@@ -32,6 +32,7 @@ import {
   UPDATE_USER_SUCCESS
 } from './authConstants'
 import { auth, createUserProfileDocument, getCurrentUser } from '../../firebase/firebase.utils'
+import { CLEAR_CART } from '../cart/cartConstants'
 
 /**
  * Sagas
@@ -251,6 +252,10 @@ export function* signOutFbSaga() {
     yield put({
       type: SIGN_OUT_FB_SUCCESS
     })
+    yield put({
+      type: CLEAR_CART
+    })
+
     yield put(replace('/'))
     toast.warn('You are logged out')
   } catch (error) {
