@@ -11,7 +11,6 @@ import { Helmet } from 'react-helmet'
 
 import './App.css'
 import Header from './components/Layout/Header/Header'
-import { userSelector } from './storeModules/auth/authSelectors'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 

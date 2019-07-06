@@ -8,7 +8,7 @@ import { userSelector } from '../storeModules/auth/authSelectors'
 const NotFoundView = React.lazy(() => import('../pages/NotFoundView/NotFoundView'))
 const HomePage = React.lazy(() => import('../pages/HomePage/HomePage'))
 const ShopPage = React.lazy(() => import('../pages/ShopPage/ShopPage'))
-const SigninAndSignupPage = React.lazy(() => import('../pages/SignInAndSignUpPage/SignInAndSignUpPage'))
+const SignInAndSignUpPage = React.lazy(() => import('../pages/SignInAndSignUpPage/SignInAndSignUpPage'))
 
 const Routes = ({ user }) => {
   return (
@@ -16,8 +16,8 @@ const Routes = ({ user }) => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route exact path="/shop" component={ShopPage} />
-        {/*<Route exact path="/signin" component={SigninAndSignupPage} />*/}
-        <Route exact path="/signin" render={() => (user ? <Redirect to="/" /> : <SigninAndSignupPage />)} />
+        {/*<Route exact path="/signin" component={SignInAndSignUpPage} />*/}
+        <Route exact path="/signin" render={() => (user ? <Redirect to="/" /> : <SignInAndSignUpPage />)} />
         <Route component={NotFoundView} />
       </Switch>
     </section>
