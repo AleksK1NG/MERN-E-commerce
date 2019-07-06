@@ -1,10 +1,11 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import './Header.styles.scss'
 import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../../assets/crown.svg'
 import { userSelector } from '../../../storeModules/auth/authSelectors'
 import { sighOutFbAuth } from '../../../storeModules/auth/authActions'
+import CartIcon from '../../Cart/CartIcon/CartIcon'
 
 const Header = ({ user, sighOutFbAuth }) => {
   return (
@@ -29,13 +30,17 @@ const Header = ({ user, sighOutFbAuth }) => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
     </div>
   )
 }
 
-export default connect(state => ({
-  user: userSelector(state)
-}), {sighOutFbAuth})(Header)
+export default connect(
+  (state) => ({
+    user: userSelector(state)
+  }),
+  { sighOutFbAuth }
+)(Header)
 
 //https://facebook.github.io/create-react-app/docs/adding-images-fonts-and-files
