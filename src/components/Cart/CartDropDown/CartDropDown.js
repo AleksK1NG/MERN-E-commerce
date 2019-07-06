@@ -12,6 +12,7 @@ const CartDropDown = ({ cartItems, cartItemsCount, totalCost }) => {
   return (
     <div className="cart-dropdown">
       <div className="cart-items">Total cost $: {totalCost}</div>
+
       <CustomButton>GO TO CHECKOUT</CustomButton>
     </div>
   )
