@@ -7,11 +7,15 @@ import {
   cartItemsSelector,
   cartItemsTotalSelector
 } from '../../../storeModules/cart/cartSelectors'
+import CartItem from '../CartItem/CartItem'
 
 const CartDropDown = ({ cartItems, cartItemsCount, totalCost }) => {
   return (
     <div className="cart-dropdown">
-      <div className="cart-items">Total cost $: {totalCost}</div>
+      <div className="cart-items">
+        {cartItems && cartItems.map((item) => <CartItem item={item} key={item.id} />)}
+        Total cost $: {totalCost}
+      </div>
 
       <CustomButton>GO TO CHECKOUT</CustomButton>
     </div>
