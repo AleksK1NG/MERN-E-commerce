@@ -12,6 +12,11 @@ export const shopCollectionsSelector = createSelector(
   (state) => state.collections
 )
 
+export const collectionsForPreviewSelector = createSelector(
+  [shopCollectionsSelector],
+  (collections) => Object.keys(collections).map((key) => collections[key])
+)
+
 export const shopLoadingSelector = createSelector(
   stateSelector,
   (state) => state.isLoading

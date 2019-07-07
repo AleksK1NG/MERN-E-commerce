@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import './CollectionsOverview.styles.scss'
-import { shopCollectionsSelector } from '../../../storeModules/shop/shopSelectors'
+import { collectionsForPreviewSelector } from '../../../storeModules/shop/shopSelectors'
 import CollectionPreview from '../CollectionPreview/CollectionPreview'
 import { fetchCollections } from '../../../storeModules/shop/shopActions'
 
@@ -17,7 +17,7 @@ const CollectionsOverview = ({ collections, fetchCollections }) => {
 
 export default connect(
   (state) => ({
-    collections: shopCollectionsSelector(state)
+    collections: collectionsForPreviewSelector(state)
   }),
   { fetchCollections }
 )(CollectionsOverview)
