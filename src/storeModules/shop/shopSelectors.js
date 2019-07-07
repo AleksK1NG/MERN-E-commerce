@@ -12,6 +12,7 @@ export const shopCollectionsSelector = createSelector(
   (state) => state.collections
 )
 
+// normalized selector
 export const collectionsForPreviewSelector = createSelector(
   [shopCollectionsSelector],
   (collections) => Object.keys(collections).map((key) => collections[key])

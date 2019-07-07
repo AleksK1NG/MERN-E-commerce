@@ -165,7 +165,7 @@ export function* getSnapshotFromUserAuthSaga(userAuth, additionalData) {
       type: SIGN_IN_WITH_EMAIL_SUCCESS,
       payload: { user }
     })
-    console.log('SNAPSHOT SAGA user payload => ', user)
+
   } catch (error) {
     yield put({
       type: SIGN_UP_WITH_EMAIL_ERROR,

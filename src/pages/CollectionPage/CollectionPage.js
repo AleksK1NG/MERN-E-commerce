@@ -1,9 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-
 import { collectionUrlParamSelector } from '../../storeModules/shop/shopSelectors'
 import CollectionItem from '../../components/Collection/CollectionItem/CollectionItem'
-
 import './CollectionPage.styles.scss'
 
 const CollectionPage = ({ collection }) => {
