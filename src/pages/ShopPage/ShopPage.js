@@ -1,14 +1,11 @@
 import React from 'react'
 import './ShopPage.styles.scss'
-import CollectionPreview from '../../components/Collection/CollectionPreview/CollectionPreview'
-
+import CollectionsOverview from '../../components/Collection/CollectionsOverview/CollectionsOverview'
 
 const ShopPage = ({ collections, fetchCollections }) => {
   return (
     <div className="shop-page">
-      {collections.map(({ id, ...collectionProps }) => (
-        <CollectionPreview key={id} {...collectionProps} />
-      ))}
+      <CollectionsOverview />
     </div>
   )
 }
