@@ -1,4 +1,3 @@
-import { fromJS } from 'immutable'
 import {
   LOAD_USER_ERROR,
   LOAD_USER_REQUEST,
