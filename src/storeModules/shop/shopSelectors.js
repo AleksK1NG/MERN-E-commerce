@@ -17,6 +17,13 @@ export const collectionsForPreviewSelector = createSelector(
   (collections) => Object.keys(collections).map((key) => collections[key])
 )
 
+// for routing by /:collectionId
+export const collectionUrlParamSelector = (urlParam) =>
+  createSelector(
+    shopCollectionsSelector,
+    (collections) => collections[urlParam]
+  )
+
 export const shopLoadingSelector = createSelector(
   stateSelector,
   (state) => state.isLoading
