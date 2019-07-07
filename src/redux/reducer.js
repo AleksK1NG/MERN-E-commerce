@@ -5,9 +5,20 @@ import uiReducer from '../storeModules/ui/uiReducer'
 import cartReducer from '../storeModules/cart/cartReducer'
 import history from '../history'
 
-export default combineReducers({
+import { persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage'
+
+const persistConfig = {
+  key: 'root',
+  storage,
+  whitelist: ['cart']
+}
+
+const rootReducer = combineReducers({
   auth: authReducer,
   ui: uiReducer,
   cart: cartReducer,
   router: connectRouter(history)
 })
+
+export default persistReducer(persistConfig, rootReducer)

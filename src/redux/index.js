@@ -4,8 +4,10 @@ import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 import createSagaMiddleware from 'redux-saga'
 import saga from './saga'
-import reducer from './reducer'
+import rootReducer from './reducer'
 import history from '../history'
+
+import { persistStore } from 'redux-persist'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -18,7 +20,7 @@ const composeEnhancers =
 
 const enhancer = composeEnhancers(applyMiddleware(thunk, sagaMiddleware, routerMiddleware(history), logger))
 
-const store = createStore(reducer, enhancer)
+export const store = createStore(rootReducer, enhancer)
 sagaMiddleware.run(saga)
 
 // Dev only
@@ -26,4 +28,6 @@ if (process.browser && process.env.NODE_ENV === 'development') {
   window.store = store
 }
 
-export default store
+export const persistor = persistStore(store)
+
+export default { store, persistor }
