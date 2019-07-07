@@ -15,6 +15,10 @@ const uiReducer = (state = initialState, action) =>
     switch (type) {
       case TOGGLE_CART_HIDDEN:
         draft.showCartIcon = !draft.showCartIcon
+        break
+
+      default:
+        return
     }
   })
 

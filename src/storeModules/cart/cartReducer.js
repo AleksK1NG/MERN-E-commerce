@@ -46,6 +46,9 @@ const cartReducer = (state = initialState, action) =>
       case CLEAR_CART:
         draft.cartItems = []
         return
+
+      default:
+        return
     }
   })
 

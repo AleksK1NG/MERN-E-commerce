@@ -92,6 +92,9 @@ const authReducer = (state = initialState, action) =>
         draft.isLoading = false
         draft.isAuthenticated = true
         break
+
+      default:
+        return
     }
   })
 
