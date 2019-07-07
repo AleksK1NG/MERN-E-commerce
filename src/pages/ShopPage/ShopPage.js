@@ -1,11 +1,17 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 import './ShopPage.styles.scss'
-import CollectionsOverview from '../../components/Collection/CollectionsOverview/CollectionsOverview'
 
-const ShopPage = ({ collections, fetchCollections }) => {
+const CategoryPage = React.lazy(() => import('../CategoryPage/CategoryPage'))
+const CollectionsOverview = React.lazy(() =>
+  import('../../components/Collection/CollectionsOverview/CollectionsOverview')
+)
+
+const ShopPage = ({ match }) => {
   return (
     <div className="shop-page">
-      <CollectionsOverview />
+      <Route exact path={`${match.path}`} component={CollectionsOverview} />
+      <Route path={`${match.path}/:collectionId`} component={CategoryPage} />
     </div>
   )
 }
