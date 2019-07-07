@@ -16,7 +16,7 @@ const Routes = ({ user }) => {
     <section className="container">
       <Switch>
         <Route exact path="/" component={HomePage} />
-        <Route exact path="/shop" component={ShopPage} />
+        <Route path="/shop" component={ShopPage} />
         <Route exact path="/checkout" component={CheckOutPage} />
         {/*<Route exact path="/signin" component={SignInAndSignUpPage} />*/}
         <Route exact path="/signin" render={() => (user ? <Redirect to="/" /> : <SignInAndSignUpPage />)} />
