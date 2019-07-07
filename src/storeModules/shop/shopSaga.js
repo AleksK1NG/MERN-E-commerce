@@ -15,7 +15,7 @@ export function* fetchCollectionsSaga() {
       type: FETCH_COLLECTIONS_SUCCESS,
       payload: { collectionsMap }
     })
-
+    debugger
     // yield put(replace('/'))
     // toast.success('You are registered ! =D')
   } catch (error) {
