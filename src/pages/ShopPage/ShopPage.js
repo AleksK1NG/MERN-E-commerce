@@ -1,9 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import './ShopPage.styles.scss'
-import { collections } from '../../data/shoppingData'
 import CollectionPreview from '../../components/Collection/CollectionPreview/CollectionPreview'
+import { shopCollectionsSelector } from '../../storeModules/shop/shopSelectors'
 
-const ShopPage = () => {
+const ShopPage = ({ collections }) => {
   return (
     <div className="shop-page">
       {collections.map(({ id, ...collectionProps }) => (
@@ -13,4 +14,9 @@ const ShopPage = () => {
   )
 }
 
-export default ShopPage
+export default connect(
+  (state) => ({
+    collections: shopCollectionsSelector(state)
+  }),
+  {}
+)(ShopPage)
