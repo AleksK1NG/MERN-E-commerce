@@ -1,17 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import './CollectionsOverview.styles.scss'
 import { collectionsForPreviewSelector } from '../../../storeModules/shop/shopSelectors'
 import CollectionPreview from '../CollectionPreview/CollectionPreview'
 import { fetchCollections } from '../../../storeModules/shop/shopActions'
 
+import { CollectionsOverviewContainer } from './CollectionsOverview.styles'
+
 const CollectionsOverview = ({ collections, fetchCollections }) => {
   return (
-    <div className="collections-overview">
+    <CollectionsOverviewContainer>
       {collections.map(({ id, ...otherCollectionProps }) => (
         <CollectionPreview key={id} {...otherCollectionProps} />
       ))}
-    </div>
+    </CollectionsOverviewContainer>
   )
 }
 
