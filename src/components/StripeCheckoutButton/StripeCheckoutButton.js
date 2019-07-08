@@ -16,7 +16,6 @@ const StripeCheckoutButton = ({ price }) => {
       description={`Your total is $${price}`}
       amount={priceForStripe}
       currency="USD"
-      email="alexander.bryksin@yandex.ru"
       label="Pay Now"
       panelLabel="Pay Now"
       billingAddress
