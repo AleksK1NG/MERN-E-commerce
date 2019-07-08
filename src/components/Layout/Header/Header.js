@@ -1,7 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import './Header.styles.scss'
-import { Link } from 'react-router-dom'
 import { ReactComponent as Logo } from '../../../assets/crown.svg'
 import { userSelector } from '../../../storeModules/auth/authSelectors'
 import { sighOutFbAuth } from '../../../storeModules/auth/authActions'
@@ -9,33 +7,29 @@ import CartIcon from '../../Cart/CartIcon/CartIcon'
 import CartDropDown from '../../Cart/CartDropDown/CartDropDown'
 import { showCartIconSelector } from '../../../storeModules/ui/uiSelectors'
 
+import { HeaderContainer, LogoContainer, OptionLink, OptionsContainer } from './Header.styles'
+
 const Header = ({ user, sighOutFbAuth, showCartIcon }) => {
   return (
-    <div className="header">
-      <Link to="/" className="logo-container">
+    <HeaderContainer>
+      <LogoContainer to="/">
         <Logo className="logo" />
-      </Link>
-      <div className="options">
+      </LogoContainer>
+      <OptionsContainer>
         {user && user.email}
-        <Link to="/shop" className="option">
-          SHOP
-        </Link>
-        <Link to="/contacts" className="option">
-          CONTACTS
-        </Link>
+        <OptionLink to="/shop">SHOP</OptionLink>
+        <OptionLink to="/contacts">CONTACTS</OptionLink>
         {user ? (
-          <div className="option" onClick={sighOutFbAuth}>
+          <OptionLink as="div" onClick={sighOutFbAuth}>
             SIGN OUT
-          </div>
+          </OptionLink>
         ) : (
-          <Link to="/signin" className="option">
-            SIGN IN
-          </Link>
+          <OptionLink to="/signin">SIGN IN</OptionLink>
         )}
         <CartIcon />
-      </div>
+      </OptionsContainer>
       {showCartIcon && <CartDropDown />}
-    </div>
+    </HeaderContainer>
   )
 }
 

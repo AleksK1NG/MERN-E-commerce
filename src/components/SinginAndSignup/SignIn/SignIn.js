@@ -2,11 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { useForm } from '../../../hooks/useForm'
 import FormInput from '../../Shared/FormInput/FormInput'
-import './Signin.styles.scss'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
 import { signInWithGoogle } from '../../../firebase/firebase.utils'
 import { signInWithEmail } from '../../../storeModules/auth/authActions'
 import { toast } from 'react-toastify'
+
+import { ButtonsBarContainer, SignInContainer, SignInTitle } from './SignIn.styles'
 
 const SignIn = ({ signInWithEmail }) => {
   const [values, handleChange, setValues] = useForm({ email: '', password: '' })
@@ -23,30 +24,28 @@ const SignIn = ({ signInWithEmail }) => {
   }
 
   return (
-    <div className="sing-in">
-      <h2>I already have an account</h2>
+    <SignInContainer>
+      <SignInTitle>I already have an account</SignInTitle>
       <span>Sign in with your email and password</span>
 
       <form onSubmit={handleSubmit}>
-        <FormInput type="email" name="email" value={values.email} handleChange={handleChange} required label="Email" />
+        <FormInput name="email" type="email" handleChange={handleChange} value={values.email} label="email" required />
         <FormInput
-          type="password"
           name="password"
+          type="password"
           value={values.password}
           handleChange={handleChange}
+          label="password"
           required
-          label="Password"
         />
-
-        <div className="buttons">
+        <ButtonsBarContainer>
           <CustomButton type="submit"> Sign in </CustomButton>
           <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
-            {' '}
-            Sign in With Google{' '}
+            Sign in with Google
           </CustomButton>
-        </div>
+        </ButtonsBarContainer>
       </form>
-    </div>
+    </SignInContainer>
   )
 }
 

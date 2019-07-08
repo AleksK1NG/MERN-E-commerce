@@ -1,6 +1,5 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import './ShopPage.styles.scss'
 
 const CollectionPage = React.lazy(() => import('../CollectionPage/CollectionPage'))
 const CollectionsOverview = React.lazy(() =>
