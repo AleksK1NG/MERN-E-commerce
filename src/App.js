@@ -26,7 +26,7 @@ const App = ({ checkUserSession }) => {
           <Fragment>
             <Helmet>
               <meta charSet="utf-8" />
-              <title>E-commerce</title>
+              <title>Alex Bryksin E-commerce shop</title>
               <link rel="canonical" href="http://github.com/AleksK1NG" />
             </Helmet>
             <Header />
