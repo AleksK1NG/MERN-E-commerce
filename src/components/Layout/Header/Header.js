@@ -7,7 +7,7 @@ import CartIcon from '../../Cart/CartIcon/CartIcon'
 import CartDropDown from '../../Cart/CartDropDown/CartDropDown'
 import { showCartIconSelector } from '../../../storeModules/ui/uiSelectors'
 
-import { HeaderContainer, LogoContainer, OptionDiv, OptionLink, OptionsContainer } from './Header.styles'
+import { HeaderContainer, LogoContainer, OptionLink, OptionsContainer } from './Header.styles'
 
 const Header = ({ user, sighOutFbAuth, showCartIcon }) => {
   return (
@@ -19,7 +19,13 @@ const Header = ({ user, sighOutFbAuth, showCartIcon }) => {
         {user && user.email}
         <OptionLink to="/shop">SHOP</OptionLink>
         <OptionLink to="/contacts">CONTACTS</OptionLink>
-        {user ? <OptionDiv onClick={sighOutFbAuth}>SIGN OUT</OptionDiv> : <OptionLink to="/signin">SIGN IN</OptionLink>}
+        {user ? (
+          <OptionLink as="div" onClick={sighOutFbAuth}>
+            SIGN OUT
+          </OptionLink>
+        ) : (
+          <OptionLink to="/signin">SIGN IN</OptionLink>
+        )}
         <CartIcon />
       </OptionsContainer>
       {showCartIcon && <CartDropDown />}
