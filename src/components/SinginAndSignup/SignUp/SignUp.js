@@ -5,8 +5,9 @@ import FormInput from '../../Shared/FormInput/FormInput'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
 import { toast } from 'react-toastify'
 
-import './Signup.styles.scss'
 import { signUpWithEmail } from '../../../storeModules/auth/authActions'
+
+import { SignUpContainer, SignUpTitle } from './SignUp.styles'
 
 const SignUp = ({ signUpWithEmail }) => {
   const [values, handleChange, setValues] = useForm({ email: '', password: '', confirmPassword: '', displayName: '' })
@@ -22,40 +23,44 @@ const SignUp = ({ signUpWithEmail }) => {
   }
 
   return (
-    <div className="sign-up">
-      <h2 className="title">I do not have a account</h2>
+    <SignUpContainer>
+      <SignUpTitle>I do not have a account</SignUpTitle>
+
       <span>Sign up with your email and password</span>
 
-      <form onSubmit={handleSubmit}>
+      <form className="sign-up-form" onSubmit={handleSubmit}>
         <FormInput
           type="text"
           name="displayName"
           value={values.displayName}
-          handleChange={handleChange}
+          onChange={handleChange}
           label="Display Name"
           required
         />
-        <FormInput type="email" name="email" value={values.email} handleChange={handleChange} required label="Email" />
+
+        <FormInput type="email" name="email" value={values.email} onChange={handleChange} label="Email" required />
+
         <FormInput
           type="password"
           name="password"
           value={values.password}
-          handleChange={handleChange}
-          required
+          onChange={handleChange}
           label="Password"
+          required
         />
+
         <FormInput
           type="password"
           name="confirmPassword"
           value={values.confirmPassword}
-          handleChange={handleChange}
-          required
+          onChange={handleChange}
           label="Confirm Password"
+          required
         />
 
         <CustomButton type="submit">SIGN UP</CustomButton>
       </form>
-    </div>
+    </SignUpContainer>
   )
 }
 
