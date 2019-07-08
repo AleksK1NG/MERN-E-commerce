@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { cartItemsSelector, cartItemsTotalSelector } from '../../storeModules/cart/cartSelectors'
-import './CheckOutPage.styles.scss'
 import CheckoutItem from '../../components/CheckOut/CheckoutItem/CheckoutItem'
+import StripeCheckoutButton from '../../components/StripeCheckoutButton/StripeCheckoutButton'
+import './CheckOutPage.styles.scss'
 
 const CheckOutPage = ({ cartItems, totalCost }) => {
   return (
@@ -28,6 +29,12 @@ const CheckOutPage = ({ cartItems, totalCost }) => {
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
       <div className="total">TOTAL: ${totalCost}</div>
+      <div className='test-warning'>
+        *Please use the following test credit card for payments*
+        <br />
+        4242 4242 4242 4242 - Exp: 01/20 - CVV: 123
+      </div>
+      <StripeCheckoutButton price={totalCost} />
     </div>
   )
 }
