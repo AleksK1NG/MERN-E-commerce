@@ -18,7 +18,13 @@ const composeEnhancers =
       })
     : compose
 
-const enhancer = composeEnhancers(applyMiddleware(thunk, sagaMiddleware, routerMiddleware(history), logger))
+const middlewares = [thunk, sagaMiddleware, routerMiddleware(history)]
+
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger)
+}
+
+const enhancer = composeEnhancers(applyMiddleware(...middlewares))
 
 export const store = createStore(rootReducer, enhancer)
 sagaMiddleware.run(saga)
