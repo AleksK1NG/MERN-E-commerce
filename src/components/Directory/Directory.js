@@ -1,15 +1,16 @@
 import React from 'react'
-import './Directory.styles.scss'
-import { sections } from './sections'
 import MenuItem from '../MenuItem/MenuItem'
+import { sections } from './sections'
+
+import { DirectoryMenuContainer } from './Directory.styles'
 
 const Directory = () => {
   return (
-    <div className="directory-menu">
+    <DirectoryMenuContainer>
       {sections.map(({ id, ...otherSectionProps }) => (
-        <MenuItem {...otherSectionProps} key={id} />
+        <MenuItem key={id} {...otherSectionProps} />
       ))}
-    </div>
+    </DirectoryMenuContainer>
   )
 }
 
