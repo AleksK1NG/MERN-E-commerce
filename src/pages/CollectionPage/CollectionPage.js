@@ -8,7 +8,6 @@ import { CollectionItemsContainer, CollectionPageContainer, CollectionTitle } fr
 import WithSpinner from '../../hoc/WithSpinner/WithSpinner'
 
 const CollectionPage = ({ collection, isLoading }) => {
-  // if (!collection) return <Loader />
   const { title, items } = collection
 
   return (

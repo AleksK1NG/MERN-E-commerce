@@ -21,8 +21,8 @@ const App = ({ checkUserSession }) => {
 
   return (
     <Fragment>
-      <Suspense fallback={<Spinner />}>
-        <ErrorBoundary>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
           <Fragment>
             <Helmet>
               <meta charSet="utf-8" />
@@ -34,9 +34,10 @@ const App = ({ checkUserSession }) => {
               <Route component={Routes} />
             </Switch>
           </Fragment>
-        </ErrorBoundary>
-        <ToastContainer position={toast.POSITION.TOP_CENTER} />
-      </Suspense>
+
+          <ToastContainer position={toast.POSITION.TOP_CENTER} />
+        </Suspense>
+      </ErrorBoundary>
     </Fragment>
   )
 }
