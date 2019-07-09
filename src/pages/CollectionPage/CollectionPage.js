@@ -4,8 +4,11 @@ import { collectionUrlParamSelector } from '../../storeModules/shop/shopSelector
 import CollectionItem from '../../components/Collection/CollectionItem/CollectionItem'
 
 import { CollectionItemsContainer, CollectionPageContainer, CollectionTitle } from './CollectionPage.styles'
+import Spinner from '../../components/Shared/Spinner/Spinner'
 
 const CollectionPage = ({ collection }) => {
+
+  if (!collection) return <Spinner />
   const { title, items } = collection
 
   return (

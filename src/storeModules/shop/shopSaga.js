@@ -11,15 +11,15 @@ export function* fetchCollectionsSaga() {
     const collectionRef = firestore.collection('collections')
     const snapshot = yield collectionRef.get()
     const collectionsMap = yield call(convertCollectionsSnapshotToMap, snapshot)
+
     yield put({
       type: FETCH_COLLECTIONS_SUCCESS,
       payload: { collectionsMap }
     })
-    debugger
     // yield put(replace('/'))
     // toast.success('You are registered ! =D')
   } catch (error) {
-    console.log(error)
+    console.error(error)
     yield put({
       type: FETCH_COLLECTIONS_ERROR,
       payload: { error }
