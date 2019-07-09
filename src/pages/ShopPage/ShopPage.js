@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Suspense } from 'react'
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
 import { fetchCollections } from '../../storeModules/shop/shopActions'
+import Spinner from '../../components/Shared/Spinner/Spinner'
+
+import { ShopPageContainer } from './ShopPage.styles'
 
 const CollectionPage = React.lazy(() => import('../CollectionPage/CollectionPage'))
 const CollectionsOverview = React.lazy(() =>
@@ -14,10 +17,12 @@ const ShopPage = ({ match, fetchCollections }) => {
   }, [fetchCollections])
 
   return (
-    <div className="shop-page">
-      <Route exact path={`${match.path}`} component={CollectionsOverview} />
-      <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
-    </div>
+    <ShopPageContainer>
+      <Suspense fallback={<Spinner />}>
+        <Route exact path={`${match.path}`} component={CollectionsOverview} />
+        <Route path={`${match.path}/:collectionId`} component={CollectionPage} />
+      </Suspense>
+    </ShopPageContainer>
   )
 }
 
