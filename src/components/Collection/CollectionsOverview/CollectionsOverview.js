@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { collectionsForPreviewSelector } from '../../../storeModules/shop/shopSelectors'
+import { compose } from 'redux'
+import { collectionsForPreviewSelector, shopLoadingSelector } from '../../../storeModules/shop/shopSelectors'
 import CollectionPreview from '../CollectionPreview/CollectionPreview'
 import { fetchCollections } from '../../../storeModules/shop/shopActions'
 
 import { CollectionsOverviewContainer } from './CollectionsOverview.styles'
+import WithSpinner from '../../../hoc/WithSpinner/WithSpinner'
 
-const CollectionsOverview = ({ collections, fetchCollections }) => {
+const CollectionsOverview = ({ collections, isLoading }) => {
   return (
     <CollectionsOverviewContainer>
       {collections.map(({ id, ...otherCollectionProps }) => (
@@ -16,9 +18,13 @@ const CollectionsOverview = ({ collections, fetchCollections }) => {
   )
 }
 
-export default connect(
-  (state) => ({
-    collections: collectionsForPreviewSelector(state)
-  }),
-  { fetchCollections }
+export default compose(
+  connect(
+    (state) => ({
+      collections: collectionsForPreviewSelector(state),
+      isLoading: shopLoadingSelector(state)
+    }),
+    { fetchCollections }
+  ),
+  WithSpinner
 )(CollectionsOverview)
