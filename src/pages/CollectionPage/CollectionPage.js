@@ -1,14 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { collectionUrlParamSelector } from '../../storeModules/shop/shopSelectors'
+import { collectionUrlParamSelector, shopLoadingSelector } from '../../storeModules/shop/shopSelectors'
 import CollectionItem from '../../components/Collection/CollectionItem/CollectionItem'
 
 import { CollectionItemsContainer, CollectionPageContainer, CollectionTitle } from './CollectionPage.styles'
-import Spinner from '../../components/Shared/Spinner/Spinner'
+import WithSpinner from '../../hoc/WithSpinner/WithSpinner'
 
-const CollectionPage = ({ collection }) => {
-
-  if (!collection) return <Spinner />
+const CollectionPage = ({ collection, isLoading }) => {
+  // if (!collection) return <Loader />
   const { title, items } = collection
 
   return (
@@ -25,7 +24,8 @@ const CollectionPage = ({ collection }) => {
 
 export default connect(
   (state, ownProps) => ({
-    collection: collectionUrlParamSelector(ownProps.match.params.collectionId)(state)
+    collection: collectionUrlParamSelector(ownProps.match.params.collectionId)(state),
+
   }),
   null
 )(CollectionPage)

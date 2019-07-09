@@ -1,8 +1,8 @@
 import React, { Suspense } from 'react'
-import Spinner from '../../components/Shared/Spinner/Spinner'
+import Loader from '../../components/Shared/Loader/Loader'
 
 export const load = (Component) => (props) => (
-  <Suspense fallback={<Spinner />}>
+  <Suspense fallback={<Loader />}>
     <Component {...props} />
   </Suspense>
 )
