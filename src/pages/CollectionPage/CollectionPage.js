@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { compose } from 'redux'
 import { collectionUrlParamSelector, shopLoadingSelector } from '../../storeModules/shop/shopSelectors'
 import CollectionItem from '../../components/Collection/CollectionItem/CollectionItem'
 
@@ -22,10 +23,13 @@ const CollectionPage = ({ collection, isLoading }) => {
   )
 }
 
-export default connect(
-  (state, ownProps) => ({
-    collection: collectionUrlParamSelector(ownProps.match.params.collectionId)(state),
-    isLoading: shopLoadingSelector(state)
-  }),
-  null
-)(WithSpinner(CollectionPage))
+export default compose(
+  connect(
+    (state, ownProps) => ({
+      collection: collectionUrlParamSelector(ownProps.match.params.collectionId)(state),
+      isLoading: shopLoadingSelector(state)
+    }),
+    null
+  ),
+  WithSpinner
+)(CollectionPage)
