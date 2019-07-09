@@ -5,12 +5,12 @@ import { Route, Switch } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { checkUserSession } from './storeModules/auth/authActions'
-import Loader from './components/Shared/Loader/Loader'
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 import { Helmet } from 'react-helmet'
 
 import './App.css'
 import Header from './components/Layout/Header/Header'
+import Spinner from './components/Shared/Spinner/Spinner'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
@@ -21,7 +21,7 @@ const App = ({ checkUserSession }) => {
 
   return (
     <Fragment>
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={<Spinner />}>
         <ErrorBoundary>
           <Fragment>
             <Helmet>
