@@ -25,7 +25,7 @@ const CollectionPage = ({ collection, isLoading }) => {
 export default connect(
   (state, ownProps) => ({
     collection: collectionUrlParamSelector(ownProps.match.params.collectionId)(state),
-
+    isLoading: shopLoadingSelector(state)
   }),
   null
-)(CollectionPage)
+)(WithSpinner(CollectionPage))
