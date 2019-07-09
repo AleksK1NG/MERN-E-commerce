@@ -15,14 +15,20 @@ export const shopCollectionsSelector = createSelector(
 // normalized selector
 export const collectionsForPreviewSelector = createSelector(
   [shopCollectionsSelector],
-  (collections) => Object.keys(collections).map((key) => collections[key])
+  (collections) => (collections ? Object.keys(collections).map((key) => collections[key]) : [])
 )
 
 // for routing by /:collectionId
+// export const collectionUrlParamSelector = (urlParam) =>
+//   createSelector(
+//     shopCollectionsSelector,
+//     (collections) => collections[urlParam]
+//   )
+
 export const collectionUrlParamSelector = (urlParam) =>
   createSelector(
     shopCollectionsSelector,
-    (collections) => collections[urlParam]
+    (collections) => (collections ? collections[urlParam] : null)
   )
 
 export const shopLoadingSelector = createSelector(
