@@ -14,7 +14,8 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_IN_WITH_EMAIL_ERROR,
   SIGN_IN_WITH_EMAIL_REQUEST,
-  SIGN_IN_WITH_EMAIL_SUCCESS, SIGN_IN_WITH_GOOGLE_ERROR,
+  SIGN_IN_WITH_EMAIL_SUCCESS,
+  SIGN_IN_WITH_GOOGLE_ERROR,
   SIGN_IN_WITH_GOOGLE_REQUEST,
   SIGN_OUT_ERROR,
   SIGN_OUT_FB_ERROR,
@@ -270,9 +271,10 @@ export function* signOutFbSaga() {
 export function* signInWithGoogleSaga() {
   try {
     const { user } = yield auth.signInWithPopup(googleProvider)
-    debugger
+
     yield getSnapshotFromUserAuthSaga(user)
-    debugger
+
+    toast.success('You are logged in, success')
   } catch (error) {
     yield put({
       type: SIGN_IN_WITH_GOOGLE_ERROR,
