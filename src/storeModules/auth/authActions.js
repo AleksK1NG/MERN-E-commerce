@@ -10,7 +10,8 @@ import {
   SIGN_IN_WITH_EMAIL_REQUEST,
   SIGN_UP_WITH_EMAIL_REQUEST,
   CHECK_USER_SESSION_REQUEST,
-  SIGN_OUT_FB_REQUEST
+  SIGN_OUT_FB_REQUEST,
+  SIGN_IN_WITH_GOOGLE_REQUEST
 } from './authConstants'
 
 export const registerUser = (userData) => {
@@ -65,4 +66,8 @@ export const checkUserSession = () => ({
 
 export const sighOutFbAuth = () => ({
   type: SIGN_OUT_FB_REQUEST
+})
+
+export const signInWithGoogleAction = () => ({
+  type: SIGN_IN_WITH_GOOGLE_REQUEST
 })

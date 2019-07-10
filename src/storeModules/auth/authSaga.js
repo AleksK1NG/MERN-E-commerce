@@ -14,7 +14,8 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_IN_WITH_EMAIL_ERROR,
   SIGN_IN_WITH_EMAIL_REQUEST,
-  SIGN_IN_WITH_EMAIL_SUCCESS,
+  SIGN_IN_WITH_EMAIL_SUCCESS, SIGN_IN_WITH_GOOGLE_ERROR,
+  SIGN_IN_WITH_GOOGLE_REQUEST,
   SIGN_OUT_ERROR,
   SIGN_OUT_FB_ERROR,
   SIGN_OUT_FB_REQUEST,
@@ -31,7 +32,7 @@ import {
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS
 } from './authConstants'
-import { auth, createUserProfileDocument, getCurrentUser } from '../../firebase/firebase.utils'
+import { auth, createUserProfileDocument, getCurrentUser, googleProvider } from '../../firebase/firebase.utils'
 import { CLEAR_CART } from '../cart/cartConstants'
 
 /**
@@ -165,7 +166,6 @@ export function* getSnapshotFromUserAuthSaga(userAuth, additionalData) {
       type: SIGN_IN_WITH_EMAIL_SUCCESS,
       payload: { user }
     })
-
   } catch (error) {
     yield put({
       type: SIGN_UP_WITH_EMAIL_ERROR,
@@ -267,6 +267,22 @@ export function* signOutFbSaga() {
   }
 }
 
+export function* signInWithGoogleSaga() {
+  try {
+    const { user } = yield auth.signInWithPopup(googleProvider)
+    debugger
+    yield getSnapshotFromUserAuthSaga(user)
+    debugger
+  } catch (error) {
+    yield put({
+      type: SIGN_IN_WITH_GOOGLE_ERROR,
+      payload: { error }
+    })
+    console.error(error)
+    toast.error(rejectError(error))
+  }
+}
+
 // export function* signInAfterSignUpSaga({ payload: { user, additionalData } }) {
 //   yield getSnapshotFromUserAuthSaga(user, additionalData)
 // }
@@ -281,6 +297,7 @@ export function* saga() {
     takeLatest(SIGN_IN_WITH_EMAIL_REQUEST, signInWithEmailSaga),
     takeLatest(SIGN_UP_WITH_EMAIL_REQUEST, signUpWithEmailSaga),
     takeLatest(CHECK_USER_SESSION_REQUEST, isUserAuthenticatedSaga),
-    takeLatest(SIGN_OUT_FB_REQUEST, signOutFbSaga)
+    takeLatest(SIGN_OUT_FB_REQUEST, signOutFbSaga),
+    takeLatest(SIGN_IN_WITH_GOOGLE_REQUEST, signInWithGoogleSaga)
   ])
 }

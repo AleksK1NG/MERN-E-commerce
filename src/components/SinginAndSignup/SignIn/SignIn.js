@@ -3,13 +3,12 @@ import { connect } from 'react-redux'
 import { useForm } from '../../../hooks/useForm'
 import FormInput from '../../Shared/FormInput/FormInput'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
-import { signInWithGoogle } from '../../../firebase/firebase.utils'
-import { signInWithEmail } from '../../../storeModules/auth/authActions'
+import { signInWithEmail, signInWithGoogleAction } from '../../../storeModules/auth/authActions'
 import { toast } from 'react-toastify'
 
 import { ButtonsBarContainer, SignInContainer, SignInTitle } from './SignIn.styles'
 
-const SignIn = ({ signInWithEmail }) => {
+const SignIn = ({ signInWithEmail, signInWithGoogleAction }) => {
   const [values, handleChange, setValues] = useForm({ email: '', password: '' })
 
   const handleSubmit = (e) => {
@@ -40,7 +39,7 @@ const SignIn = ({ signInWithEmail }) => {
         />
         <ButtonsBarContainer>
           <CustomButton type="submit"> Sign in </CustomButton>
-          <CustomButton onClick={signInWithGoogle} isGoogleSignIn>
+          <CustomButton onClick={signInWithGoogleAction} isGoogleSignIn>
             Sign in with Google
           </CustomButton>
         </ButtonsBarContainer>
@@ -51,5 +50,5 @@ const SignIn = ({ signInWithEmail }) => {
 
 export default connect(
   null,
-  { signInWithEmail }
+  { signInWithEmail, signInWithGoogleAction }
 )(SignIn)

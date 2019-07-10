@@ -1,6 +1,6 @@
 import { produce } from 'immer'
 import { FETCH_COLLECTIONS_ERROR, FETCH_COLLECTIONS_REQUEST, FETCH_COLLECTIONS_SUCCESS } from './shopConstants'
-import SHOP_DATA from './shop.data'
+// import SHOP_DATA from './shop.data'
 
 /**
  * Reducer

@@ -7,6 +7,7 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_IN_WITH_EMAIL_ERROR,
   SIGN_IN_WITH_EMAIL_SUCCESS,
+  SIGN_IN_WITH_GOOGLE_ERROR,
   SIGN_OUT_FB_ERROR,
   SIGN_OUT_FB_REQUEST,
   SIGN_OUT_FB_SUCCESS,
@@ -62,6 +63,7 @@ const authReducer = (state = initialState, action) =>
         draft.user = null
         break
 
+      case SIGN_IN_WITH_GOOGLE_ERROR:
       case SIGN_OUT_FB_ERROR:
       case SIGN_UP_WITH_EMAIL_ERROR:
       case SIGN_IN_WITH_EMAIL_ERROR:
