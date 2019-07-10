@@ -6,7 +6,7 @@ import SHOP_DATA from './shop.data'
  * Reducer
  * */
 export const initialState = {
-  collections: {},
+  collections: null,
   isLoading: false,
   error: null
 }
