@@ -58,9 +58,9 @@ const authReducer = (state = initialState, action) =>
 
       case SIGN_OUT_FB_SUCCESS:
       case SIGN_OUT_SUCCESS:
+        draft.user = null
         draft.isLoading = false
         draft.isAuthenticated = false
-        draft.user = null
         break
 
       case SIGN_IN_WITH_GOOGLE_ERROR:
