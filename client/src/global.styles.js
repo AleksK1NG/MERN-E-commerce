@@ -10,9 +10,13 @@ export const GlobalStyle = createGlobalStyle`
   body {
     /*font-family: 'Open Sans Condensed', sans-serif;*/
     font-family: 'Lato', sans-serif;
-    width: 100%;
-    height: 100%;
-    padding: 20px 60px;
+    //width: 100%;
+    //height: 100%;
+    padding: 20px 40px;
+    
+    @media screen and (max-width: 800px) {
+      padding: 10px;
+    }
   }
   
   a {
