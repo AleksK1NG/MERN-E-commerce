@@ -10,7 +10,7 @@ import Header from './components/Layout/Header/Header'
 
 import Spinner from './components/Shared/Spinner/Spinner'
 import 'react-toastify/dist/ReactToastify.css'
-import './App.css'
+import { GlobalStyle } from './global.styles'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
@@ -29,6 +29,7 @@ const App = ({ checkUserSession }) => {
               <title>Alex Bryksin E-commerce shop</title>
               <link rel="canonical" href="http://github.com/AleksK1NG" />
             </Helmet>
+            <GlobalStyle />
             <Header />
             <Switch>
               <Route component={Routes} />
