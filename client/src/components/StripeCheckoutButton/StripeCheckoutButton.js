@@ -1,13 +1,21 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import StripeCheckout from 'react-stripe-checkout'
+import { stripePayment } from '../../storeModules/shop/shopActions'
 
-const StripeCheckoutButton = ({ price }) => {
+const StripeCheckoutButton = ({ price, stripePayment }) => {
   const priceForStripe = price * 100
   const publishableKey = 'pk_test_LTPsxTlZIIXFQlB8FrLIDjco'
 
   const onToken = (token) => {
     console.log('stripe token => ', token)
-    alert('Payment Successful!')
+
+    const paymentData = {
+      amount: priceForStripe,
+      token: token
+    }
+    debugger
+    stripePayment(paymentData)
   }
 
   return (
@@ -27,4 +35,7 @@ const StripeCheckoutButton = ({ price }) => {
   )
 }
 
-export default StripeCheckoutButton
+export default connect(
+  null,
+  { stripePayment }
+)(StripeCheckoutButton)

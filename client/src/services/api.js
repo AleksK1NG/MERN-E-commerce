@@ -7,6 +7,8 @@ const USER_REGISTER_URL = '/api/v1/auth/register'
 const USER_LOGIN_URL = '/api/v1/auth/login'
 const LOAD_USER_URL = '/api/v1/auth/me'
 
+const STRIPE_PAYMENT_URL = '/payment'
+
 // Axios Instance
 const axiosInstance = axios.create({
   timeout: 3000
@@ -50,6 +52,10 @@ class ApiService {
 
   loadUser() {
     return axiosInstance.get(LOAD_USER_URL)
+  }
+
+  stripePayment(paymentData) {
+    return axios.post(STRIPE_PAYMENT_URL, paymentData)
   }
 }
 

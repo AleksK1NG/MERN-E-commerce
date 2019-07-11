@@ -1,5 +1,10 @@
 import { produce } from 'immer'
-import { FETCH_COLLECTIONS_ERROR, FETCH_COLLECTIONS_REQUEST, FETCH_COLLECTIONS_SUCCESS } from './shopConstants'
+import {
+  FETCH_COLLECTIONS_ERROR,
+  FETCH_COLLECTIONS_REQUEST,
+  FETCH_COLLECTIONS_SUCCESS,
+  STRIPE_PAYMENT_ERROR,
+} from './shopConstants'
 // import SHOP_DATA from './shop.data'
 
 /**
@@ -26,6 +31,7 @@ const shopReducer = (state = initialState, action) =>
         draft.isLoading = false
         return
 
+      case STRIPE_PAYMENT_ERROR:
       case FETCH_COLLECTIONS_ERROR:
         draft.error = payload.error
         // draft.collections = []
