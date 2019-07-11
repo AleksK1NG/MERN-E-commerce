@@ -6,6 +6,7 @@
     "node": "10.16.0",
     "npm": "6.9.0"
   },
+  "homepage": "https://alex-e-commerce--react.herokuapp.com/",
   "scripts": {
     "client": "cd client && yarn start",
     "server": "nodemon server.js",

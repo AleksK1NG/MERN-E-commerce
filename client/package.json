@@ -2,6 +2,11 @@
   "name": "cra-3--saga",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "10.16.0",
+    "npm": "6.9.0"
+  },
+  "homepage": "https://alex-e-commerce--react.herokuapp.com/",
   "dependencies": {
     "axios": "^0.19.0",
     "connected-react-router": "^6.5.0",
@@ -36,7 +41,6 @@
   },
   "author": "Alexander Bryksin",
   "license": "ISC",
-  "homepage": "https://github.com/AleksK1NG",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
