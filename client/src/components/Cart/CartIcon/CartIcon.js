@@ -5,7 +5,7 @@ import { cartItemsCountSelector } from '../../../storeModules/cart/cartSelectors
 
 import { ShoppingIcon, CartContainer, ItemCountContainer } from './CartIcon.styles'
 
-const CartIcon = ({ toggleCartHidden, cartItemsCount }) => {
+export const CartIcon = ({ toggleCartHidden, cartItemsCount }) => {
   return (
     <CartContainer onClick={toggleCartHidden}>
       <ShoppingIcon />
