@@ -25,9 +25,6 @@ describe('CartIcon component', () => {
 
   it('should call toggleCartHidden when icon is clicked', () => {
     wrapper.find('CartContainer').simulate('click')
-    console.log(wrapper.debug())
-    console.log(wrapper.find('ShoppingIcon'))
-
     expect(mockToggleCartHidden).toHaveBeenCalled()
   })
 
