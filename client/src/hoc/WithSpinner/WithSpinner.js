@@ -1,7 +1,7 @@
 import React from 'react'
 import Spinner from '../../components/Shared/Spinner/Spinner'
 
-const WithSpinner = (WrappedComponent) => ({ isLoading, ...otherProps }) => {
+export const WithSpinner = (WrappedComponent) => ({ isLoading, ...otherProps }) => {
   return isLoading ? <Spinner /> : <WrappedComponent {...otherProps} />
 }
 
