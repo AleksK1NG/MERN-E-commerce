@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { BackgroundImage } from '../CollectionItem/CollectionItem.styles'
 
 export const CollectionPreviewContainer = styled.div`
   display: flex;
@@ -10,6 +11,8 @@ export const CollectionPreviewContainer = styled.div`
   }
 `
 
+CollectionPreviewContainer.displayName = 'CollectionPreviewContainer'
+
 export const TitleContainer = styled.h1`
   font-size: 28px;
   margin-bottom: 25px;
@@ -19,6 +22,7 @@ export const TitleContainer = styled.h1`
     color: grey;
   }
 `
+TitleContainer.displayName = 'TitleContainer'
 
 export const PreviewContainer = styled.div`
   display: flex;
@@ -30,3 +34,4 @@ export const PreviewContainer = styled.div`
     grid-gap: 15px;
   }
 `
+PreviewContainer.displayName = 'PreviewContainer'
