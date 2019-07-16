@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { CartDropdownContainer } from '../CartDropDown/CartDropDown.styles'
 
 export const CartItemContainer = styled.div`
   width: 100%;

@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { CartItemImage } from '../../Cart/CartItem/CartItem.styles'
 
 export const CheckoutItemContainer = styled.div`
   width: 100%;

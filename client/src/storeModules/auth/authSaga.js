@@ -291,11 +291,11 @@ export function* signInWithGoogleSaga() {
 
 export function* saga() {
   yield all([
-    takeEvery(SIGN_UP_REQUEST, registerSaga),
-    takeEvery(LOAD_USER_REQUEST, loadUserSaga),
-    takeEvery(SIGN_IN_REQUEST, loginSaga),
-    takeEvery(SIGN_OUT_REQUEST, logoutSaga),
-    takeEvery(UPDATE_USER_REQUEST, updateUserSaga),
+    takeLatest(SIGN_UP_REQUEST, registerSaga),
+    takeLatest(LOAD_USER_REQUEST, loadUserSaga),
+    takeLatest(SIGN_IN_REQUEST, loginSaga),
+    takeLatest(SIGN_OUT_REQUEST, logoutSaga),
+    takeLatest(UPDATE_USER_REQUEST, updateUserSaga),
     takeLatest(SIGN_IN_WITH_EMAIL_REQUEST, signInWithEmailSaga),
     takeLatest(SIGN_UP_WITH_EMAIL_REQUEST, signUpWithEmailSaga),
     takeLatest(CHECK_USER_SESSION_REQUEST, isUserAuthenticatedSaga),
