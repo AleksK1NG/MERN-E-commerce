@@ -10,7 +10,7 @@ import {
   TextContainer
 } from './CheckoutItem.styles'
 
-const CheckoutItem = ({ cartItem, deleteCartItem, addCartItem, clearItemFromCart }) => {
+export const CheckoutItem = ({ cartItem, deleteCartItem, addCartItem, clearItemFromCart }) => {
   const { imageUrl, name, quantity, price } = cartItem
 
   return (
