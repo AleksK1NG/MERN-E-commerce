@@ -9,7 +9,7 @@ import { showCartIconSelector } from '../../../storeModules/ui/uiSelectors'
 
 import { HeaderContainer, LogoContainer, OptionLink, OptionsContainer } from './Header.styles'
 
-const Header = ({ user, sighOutFbAuth, showCartIcon }) => {
+export const Header = ({ user, sighOutFbAuth, showCartIcon }) => {
   return (
     <HeaderContainer>
       <LogoContainer to="/">
