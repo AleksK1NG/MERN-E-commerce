@@ -47,7 +47,7 @@ describe('MenuItem component', () => {
     expect(wrapper.find('BackgroundImageContainer').prop('imageUrl')).toBe(imageUrl)
   })
 
-  it('should ContentTitle have title', function() {
+  it('should ContentTitle have title', () => {
     expect(wrapper.find('ContentTitle').text()).toBe(title.toUpperCase())
   })
 })
