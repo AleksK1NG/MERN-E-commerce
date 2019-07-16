@@ -11,7 +11,7 @@ import {
   PriceContainer
 } from './CollectionItem.styles'
 
-const CollectionItem = ({ item, addCartItem }) => {
+export const CollectionItem = ({ item, addCartItem }) => {
   const { name, price, imageUrl } = item
 
   return (

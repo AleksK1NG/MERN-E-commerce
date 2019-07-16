@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
+import { TextContainer } from '../../CheckOut/CheckoutItem/CheckoutItem.styles'
 
 export const CollectionItemContainer = styled.div`
   width: 22vw;
@@ -35,6 +36,8 @@ export const CollectionItemContainer = styled.div`
   }
 `
 
+CollectionItemContainer.displayName = 'CollectionItemContainer'
+
 export const AddButton = styled(CustomButton)`
   width: 80%;
   opacity: 0.7;
@@ -50,6 +53,8 @@ export const AddButton = styled(CustomButton)`
   }
 `
 
+AddButton.displayName = 'AddButton'
+
 export const BackgroundImage = styled.div`
   width: 100%;
   height: 95%;
@@ -59,6 +64,8 @@ export const BackgroundImage = styled.div`
   background-image: ${({ imageUrl }) => `url(${imageUrl})`};
 `
 
+BackgroundImage.displayName = 'BackgroundImage'
+
 export const CollectionFooterContainer = styled.div`
   width: 100%;
   height: 5%;
@@ -67,12 +74,17 @@ export const CollectionFooterContainer = styled.div`
   font-size: 18px;
 `
 
+CollectionFooterContainer.displayName = 'CollectionFooterContainer'
+
 export const NameContainer = styled.span`
   width: 90%;
   margin-bottom: 15px;
 `
 
+NameContainer.displayName = 'NameContainer'
+
 export const PriceContainer = styled.span`
   width: 10%;
   text-align: right;
 `
+PriceContainer.displayName = 'PriceContainer'
