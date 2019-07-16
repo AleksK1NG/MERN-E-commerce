@@ -4,7 +4,7 @@ import { sections } from './sections'
 
 import { DirectoryMenuContainer } from './Directory.styles'
 
-const Directory = () => {
+export const Directory = () => {
   return (
     <DirectoryMenuContainer>
       {sections.map(({ id, ...otherSectionProps }) => (
