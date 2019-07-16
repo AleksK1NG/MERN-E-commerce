@@ -4,3 +4,4 @@ export const CollectionsOverviewContainer = styled.div`
   display: flex;
   flex-direction: column;
 `
+CollectionsOverviewContainer.displayName = 'CollectionsOverviewContainer'
