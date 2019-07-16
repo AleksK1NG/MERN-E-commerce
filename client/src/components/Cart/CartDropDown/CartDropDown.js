@@ -11,7 +11,7 @@ import {
   EmptyMessageContainer
 } from './CartDropDown.styles'
 
-const CartDropDown = ({ cartItems, history, toggleCartHidden }) => {
+export const CartDropDown = ({ cartItems, history, toggleCartHidden }) => {
   const goCheckoutHandler = () => {
     history.push('/checkout')
     toggleCartHidden()

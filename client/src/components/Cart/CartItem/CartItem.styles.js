@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { CartDropdownContainer } from '../CartDropDown/CartDropDown.styles'
 
 export const CartItemContainer = styled.div`
   width: 100%;
@@ -7,9 +8,13 @@ export const CartItemContainer = styled.div`
   margin-bottom: 15px;
 `
 
+CartItemContainer.displayName = 'CartItemContainer'
+
 export const CartItemImage = styled.img`
   width: 30%;
 `
+
+CartItemImage.displayName = 'CartItemImage'
 
 export const ItemDetailsContainer = styled.div`
   width: 70%;
@@ -19,3 +24,4 @@ export const ItemDetailsContainer = styled.div`
   justify-content: center;
   padding: 10px 20px;
 `
+ItemDetailsContainer.displayName = 'ItemDetailsContainer'
