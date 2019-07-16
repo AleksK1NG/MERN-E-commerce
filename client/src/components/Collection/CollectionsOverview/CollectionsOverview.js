@@ -8,7 +8,7 @@ import { fetchCollections } from '../../../storeModules/shop/shopActions'
 import { CollectionsOverviewContainer } from './CollectionsOverview.styles'
 import WithSpinner from '../../../hoc/WithSpinner/WithSpinner'
 
-const CollectionsOverview = ({ collections, isLoading }) => {
+export const CollectionsOverview = ({ collections, isLoading }) => {
   return (
     <CollectionsOverviewContainer>
       {collections.map(({ id, ...otherCollectionProps }) => (
