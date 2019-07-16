@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { BackgroundImage } from '../CollectionItem/CollectionItem.styles'
 
 export const CollectionPreviewContainer = styled.div`
   display: flex;

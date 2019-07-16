@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
-import { TextContainer } from '../../CheckOut/CheckoutItem/CheckoutItem.styles'
 
 export const CollectionItemContainer = styled.div`
   width: 22vw;

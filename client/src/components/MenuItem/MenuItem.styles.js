@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { OptionLink } from '../Layout/Header/Header.styles'
 
 export const MenuItemContainer = styled.div`
 	height: ${({ size }) => (size ? '380px' : '240px')}
