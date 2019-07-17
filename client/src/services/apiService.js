@@ -4,9 +4,12 @@ import axios from 'axios'
  * Api Service
  * */
 
-const USER_REGISTER_URL = '/api/v1/auth/register'
-const USER_LOGIN_URL = '/api/v1/auth/login'
-const LOAD_USER_URL = '/api/v1/auth/me'
+const apiUrls = {
+  USER_URL: '/api/v1/user',
+  USER_REGISTER_URL: '/api/v1/user/register',
+  USER_LOGIN_URL: '/api/v1/user/login',
+  USER_ME_URL: '/api/v1/user/me'
+}
 
 const STRIPE_PAYMENT_URL = '/payment'
 
@@ -38,7 +41,7 @@ class ApiService {
       }
     }
 
-    return axios.post(USER_REGISTER_URL, userData, config)
+    return axios.post(apiUrls.USER_REGISTER_URL, userData, config)
   }
 
   loginUser(userData) {
@@ -48,11 +51,11 @@ class ApiService {
       }
     }
 
-    return axios.post(USER_LOGIN_URL, userData, config)
+    return axios.post(apiUrls.USER_LOGIN_URL, userData, config)
   }
 
   loadUser() {
-    return axiosInstance.get(LOAD_USER_URL)
+    return axiosInstance.get(apiUrls.USER_ME_URL)
   }
 
   stripePayment(paymentData) {
