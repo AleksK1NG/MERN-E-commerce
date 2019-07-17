@@ -11,34 +11,70 @@ import {
   SIGN_UP_WITH_EMAIL_REQUEST,
   CHECK_USER_SESSION_REQUEST,
   SIGN_OUT_FB_REQUEST,
-  SIGN_IN_WITH_GOOGLE_REQUEST
+  SIGN_IN_WITH_GOOGLE_REQUEST,
+  SIGN_IN_SUCCESS,
+  SIGN_UP_SUCCESS,
+  LOAD_USER_SUCCESS,
+  SIGN_OUT_SUCCESS,
+  SIGN_OUT_ERROR
 } from './authConstants'
 
-export const registerUser = (userData) => {
-  return {
-    type: SIGN_UP_REQUEST,
-    payload: { userData }
-  }
-}
+export const registerUserRequest = (userData) => ({
+  type: SIGN_UP_REQUEST,
+  payload: { userData }
+})
 
-export const loginUser = (userData) => {
-  return {
-    type: SIGN_IN_REQUEST,
-    payload: { userData }
-  }
-}
+export const registerUserSuccess = (data) => ({
+  type: SIGN_UP_SUCCESS,
+  payload: { data }
+})
 
-export const loadUser = () => {
-  return {
-    type: LOAD_USER_REQUEST
-  }
-}
+export const registerUserError = (error) => ({
+  type: SIGN_UP_SUCCESS,
+  payload: { error }
+})
 
-export const logoutUser = () => {
-  return {
-    type: SIGN_OUT_REQUEST
-  }
-}
+export const loginUserRequest = (userData) => ({
+  type: SIGN_IN_REQUEST,
+  payload: { userData }
+})
+
+export const loginUserSuccess = (data) => ({
+  type: SIGN_IN_SUCCESS,
+  payload: { data }
+})
+
+export const loginUserError = (error) => ({
+  type: SIGN_IN_SUCCESS,
+  payload: { error }
+})
+
+export const loadUserRequest = () => ({
+  type: LOAD_USER_REQUEST
+})
+
+export const loadUserSuccess = (data) => ({
+  type: LOAD_USER_SUCCESS,
+  payload: { data }
+})
+
+export const loadUserError = (error) => ({
+  type: LOAD_USER_SUCCESS,
+  payload: { error }
+})
+
+export const logoutUserRequest = () => ({
+  type: SIGN_OUT_REQUEST
+})
+
+export const logoutUserSuccess = () => ({
+  type: SIGN_OUT_SUCCESS
+})
+
+export const logoutUserError = (error) => ({
+  type: SIGN_OUT_ERROR,
+  payload: { error }
+})
 
 export const updateUser = (user) => {
   return {

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 
 import { ToastContainer, toast } from 'react-toastify'
-import { checkUserSession } from './storeModules/auth/authActions'
+import { checkUserSession, loadUserRequest } from './storeModules/auth/authActions'
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 import { Helmet } from 'react-helmet'
 import Header from './components/Layout/Header/Header'
@@ -14,10 +14,10 @@ import { GlobalStyle } from './global.styles'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
-const App = ({ checkUserSession }) => {
+const App = ({ checkUserSession, loadUserRequest }) => {
   useEffect(() => {
-    checkUserSession()
-  }, [checkUserSession])
+    loadUserRequest()
+  }, [loadUserRequest])
 
   return (
     <Fragment>
@@ -45,5 +45,5 @@ const App = ({ checkUserSession }) => {
 
 export default connect(
   null,
-  { checkUserSession }
+  { checkUserSession, loadUserRequest }
 )(App)

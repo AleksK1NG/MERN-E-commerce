@@ -1,31 +1,23 @@
 import { replace } from 'connected-react-router'
 import { toast } from 'react-toastify'
 
-import { takeEvery, call, put, all, takeLatest } from 'redux-saga/effects'
+import { call, put, all, takeLatest } from 'redux-saga/effects'
 import { rejectError } from '../../utils/rejectErrorHelper'
-import api from '../../services/api'
+import api from '../../services/apiService'
 import {
   CHECK_USER_SESSION_REQUEST,
-  LOAD_USER_ERROR,
   LOAD_USER_REQUEST,
-  LOAD_USER_SUCCESS,
-  SIGN_IN_ERROR,
   SIGN_IN_REQUEST,
-  SIGN_IN_SUCCESS,
   SIGN_IN_WITH_EMAIL_ERROR,
   SIGN_IN_WITH_EMAIL_REQUEST,
   SIGN_IN_WITH_EMAIL_SUCCESS,
   SIGN_IN_WITH_GOOGLE_ERROR,
   SIGN_IN_WITH_GOOGLE_REQUEST,
-  SIGN_OUT_ERROR,
   SIGN_OUT_FB_ERROR,
   SIGN_OUT_FB_REQUEST,
   SIGN_OUT_FB_SUCCESS,
   SIGN_OUT_REQUEST,
-  SIGN_OUT_SUCCESS,
-  SIGN_UP_ERROR,
   SIGN_UP_REQUEST,
-  SIGN_UP_SUCCESS,
   SIGN_UP_WITH_EMAIL_ERROR,
   SIGN_UP_WITH_EMAIL_REQUEST,
   SIGN_UP_WITH_EMAIL_SUCCESS,
@@ -35,61 +27,52 @@ import {
 } from './authConstants'
 import { auth, createUserProfileDocument, getCurrentUser, googleProvider } from '../../firebase/firebase.utils'
 import { CLEAR_CART } from '../cart/cartConstants'
+import {
+  loadUserError,
+  loadUserSuccess,
+  loginUserError,
+  loginUserSuccess,
+  logoutUserError,
+  logoutUserSuccess,
+  registerUserError,
+  registerUserSuccess
+} from './authActions'
 
 /**
  * Sagas
  */
 
-export function* registerSaga(action) {
-  const {
-    payload: { userData }
-  } = action
+export function* registerSaga({ payload }) {
+  const { userData } = payload
 
   try {
     const { data } = yield call(api.registerUser, userData)
-
-    yield put({
-      type: SIGN_UP_SUCCESS,
-      payload: { data }
-    })
-
+    yield put(registerUserSuccess(data))
     localStorage.setItem('mern-dev', data.token)
 
     yield put(replace('/'))
-    toast.success('You are registered ! =D')
+    toast.success('You are successfully registered ! =D')
   } catch (error) {
-    console.log(error)
-    yield put({
-      type: SIGN_UP_ERROR,
-      payload: { error }
-    })
+    console.error(error)
+    yield put(registerUserError(error))
     toast.error(rejectError(error))
   }
 }
 
-export function* loginSaga(action) {
-  const {
-    payload: { userData }
-  } = action
+export function* loginSaga({ payload }) {
+  const { userData } = payload
 
   try {
     const { data } = yield call(api.loginUser, userData)
+    yield put(loginUserSuccess(data))
     localStorage.setItem('mern-dev', data.token)
 
-    yield put({
-      type: SIGN_IN_SUCCESS,
-      payload: { data }
-    })
-
     yield put(replace('/'))
-    toast.success('You are logged in ! =D')
+    toast.success('You are successfully logged in ! =D')
   } catch (error) {
     console.error(error)
 
-    yield put({
-      type: SIGN_IN_ERROR,
-      payload: { error }
-    })
+    yield put(loginUserError(error))
     toast.error(rejectError(error))
   }
 }
@@ -98,16 +81,10 @@ export function* loadUserSaga() {
   try {
     const { data } = yield call(api.loadUser)
 
-    yield put({
-      type: LOAD_USER_SUCCESS,
-      payload: { data }
-    })
+    yield put(loadUserSuccess(data))
   } catch (error) {
     localStorage.removeItem('mern-dev')
-    yield put({
-      type: LOAD_USER_ERROR,
-      payload: { error }
-    })
+    yield put(loadUserError(error))
     console.error(error)
   }
 }
@@ -115,20 +92,14 @@ export function* loadUserSaga() {
 export function* logoutSaga() {
   try {
     // yield call(api.logoutUser);
-
-    yield put({
-      type: SIGN_OUT_SUCCESS
-    })
+    yield put(logoutUserSuccess())
 
     localStorage.removeItem('mern-dev')
     toast.warn('You are logged out')
     yield put(replace('/'))
   } catch (error) {
     localStorage.removeItem('mern-dev')
-    yield put({
-      type: SIGN_OUT_ERROR,
-      payload: { error }
-    })
+    yield put(logoutUserError(error))
     console.error(error)
   }
 }

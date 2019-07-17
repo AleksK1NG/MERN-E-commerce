@@ -5,12 +5,12 @@ import FormInput from '../../Shared/FormInput/FormInput'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
 import { toast } from 'react-toastify'
 
-import { signUpWithEmail } from '../../../storeModules/auth/authActions'
+import { registerUserRequest, signUpWithEmail } from '../../../storeModules/auth/authActions'
 
 import { SignUpContainer, SignUpTitle } from './SignUp.styles'
 
-const SignUp = ({ signUpWithEmail }) => {
-  const [values, handleChange, setValues] = useForm({ email: '', password: '', confirmPassword: '', displayName: '' })
+const SignUp = ({ signUpWithEmail, registerUserRequest }) => {
+  const [values, handleChange, setValues] = useForm({ email: '', password: '', confirmPassword: '', username: '' })
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -18,8 +18,8 @@ const SignUp = ({ signUpWithEmail }) => {
     if (values.password !== values.confirmPassword) {
       return toast.error('Passwords doesnt match')
     }
-    signUpWithEmail(values)
-    setValues({ email: '', password: '', confirmPassword: '', displayName: '' })
+    registerUserRequest(values)
+    setValues({ email: '', password: '', confirmPassword: '', username: '' })
   }
 
   return (
@@ -31,10 +31,10 @@ const SignUp = ({ signUpWithEmail }) => {
       <form className="sign-up-form" onSubmit={handleSubmit}>
         <FormInput
           type="text"
-          name="displayName"
-          value={values.displayName}
+          name="username"
+          value={values.username}
           onChange={handleChange}
-          label="Display Name"
+          label="User Name"
           required
         />
 
@@ -66,5 +66,5 @@ const SignUp = ({ signUpWithEmail }) => {
 
 export default connect(
   null,
-  { signUpWithEmail }
+  { signUpWithEmail, registerUserRequest }
 )(SignUp)

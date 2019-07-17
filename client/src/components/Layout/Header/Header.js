@@ -2,14 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { ReactComponent as Logo } from '../../../assets/crown.svg'
 import { userSelector } from '../../../storeModules/auth/authSelectors'
-import { sighOutFbAuth } from '../../../storeModules/auth/authActions'
+import { logoutUserRequest, sighOutFbAuth } from '../../../storeModules/auth/authActions'
 import CartIcon from '../../Cart/CartIcon/CartIcon'
 import CartDropDown from '../../Cart/CartDropDown/CartDropDown'
 import { showCartIconSelector } from '../../../storeModules/ui/uiSelectors'
 
 import { HeaderContainer, LogoContainer, OptionLink, OptionsContainer } from './Header.styles'
 
-export const Header = ({ user, sighOutFbAuth, showCartIcon }) => {
+export const Header = ({ user, sighOutFbAuth, showCartIcon, logoutUserRequest }) => {
   return (
     <HeaderContainer>
       <LogoContainer to="/">
@@ -20,7 +20,7 @@ export const Header = ({ user, sighOutFbAuth, showCartIcon }) => {
         <OptionLink to="/shop">SHOP</OptionLink>
         <OptionLink to="/contacts">CONTACTS</OptionLink>
         {user ? (
-          <OptionLink as="div" onClick={sighOutFbAuth}>
+          <OptionLink as="div" onClick={logoutUserRequest}>
             SIGN OUT
           </OptionLink>
         ) : (
@@ -38,7 +38,7 @@ export default connect(
     user: userSelector(state),
     showCartIcon: showCartIconSelector(state)
   }),
-  { sighOutFbAuth }
+  { sighOutFbAuth, logoutUserRequest }
 )(Header)
 
 //https://facebook.github.io/create-react-app/docs/adding-images-fonts-and-files

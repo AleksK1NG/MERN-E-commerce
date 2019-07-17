@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { useForm } from '../../../hooks/useForm'
 import FormInput from '../../Shared/FormInput/FormInput'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
-import { signInWithEmail, signInWithGoogleAction } from '../../../storeModules/auth/authActions'
+import { loginUserRequest, signInWithEmail, signInWithGoogleAction } from '../../../storeModules/auth/authActions'
 import { toast } from 'react-toastify'
 
 import { ButtonsBarContainer, SignInContainer, SignInTitle } from './SignIn.styles'
 
-const SignIn = ({ signInWithEmail, signInWithGoogleAction }) => {
+const SignIn = ({ signInWithEmail, signInWithGoogleAction, loginUserRequest }) => {
   const [values, handleChange, setValues] = useForm({ email: '', password: '' })
 
   const handleSubmit = (e) => {
@@ -18,7 +18,8 @@ const SignIn = ({ signInWithEmail, signInWithGoogleAction }) => {
       return toast.error('Passwords and Email is required')
     }
 
-    signInWithEmail(values)
+    // signInWithEmail(values)
+    loginUserRequest(values)
     setValues({ email: '', password: '' })
   }
 
@@ -50,5 +51,5 @@ const SignIn = ({ signInWithEmail, signInWithGoogleAction }) => {
 
 export default connect(
   null,
-  { signInWithEmail, signInWithGoogleAction }
+  { signInWithEmail, signInWithGoogleAction, loginUserRequest }
 )(SignIn)

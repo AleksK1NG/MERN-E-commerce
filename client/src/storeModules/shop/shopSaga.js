@@ -11,7 +11,7 @@ import {
   STRIPE_PAYMENT_REQUEST
 } from './shopConstants'
 import { convertCollectionsSnapshotToMap, firestore } from '../../firebase/firebase.utils'
-import ApiService from '../../services/api'
+import ApiService from '../../services/apiService'
 
 export function* fetchCollectionsSaga() {
   try {
