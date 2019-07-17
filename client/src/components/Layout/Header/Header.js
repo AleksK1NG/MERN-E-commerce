@@ -2,14 +2,14 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { ReactComponent as Logo } from '../../../assets/crown.svg'
 import { userSelector } from '../../../storeModules/auth/authSelectors'
-import { logoutUserRequest, sighOutFbAuth } from '../../../storeModules/auth/authActions'
+import { logoutUserRequest } from '../../../storeModules/auth/authActions'
 import CartIcon from '../../Cart/CartIcon/CartIcon'
 import CartDropDown from '../../Cart/CartDropDown/CartDropDown'
 import { showCartIconSelector } from '../../../storeModules/ui/uiSelectors'
 
 import { HeaderContainer, LogoContainer, OptionLink, OptionsContainer } from './Header.styles'
 
-export const Header = ({ user, sighOutFbAuth, showCartIcon, logoutUserRequest }) => {
+export const Header = ({ user, showCartIcon, logoutUserRequest }) => {
   return (
     <HeaderContainer>
       <LogoContainer to="/">
@@ -38,7 +38,7 @@ export default connect(
     user: userSelector(state),
     showCartIcon: showCartIconSelector(state)
   }),
-  { sighOutFbAuth, logoutUserRequest }
+  { logoutUserRequest }
 )(Header)
 
 //https://facebook.github.io/create-react-app/docs/adding-images-fonts-and-files
