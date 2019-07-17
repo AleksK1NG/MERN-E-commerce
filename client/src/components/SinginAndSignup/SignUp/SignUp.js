@@ -5,11 +5,11 @@ import FormInput from '../../Shared/FormInput/FormInput'
 import CustomButton from '../../Shared/CustomButton/CustomButton'
 import { toast } from 'react-toastify'
 
-import { registerUserRequest, signUpWithEmail } from '../../../storeModules/auth/authActions'
+import { registerUserRequest } from '../../../storeModules/auth/authActions'
 
 import { SignUpContainer, SignUpTitle } from './SignUp.styles'
 
-const SignUp = ({ signUpWithEmail, registerUserRequest }) => {
+const SignUp = ({ registerUserRequest }) => {
   const [values, handleChange, setValues] = useForm({ email: '', password: '', confirmPassword: '', username: '' })
 
   const handleSubmit = (e) => {
@@ -66,5 +66,5 @@ const SignUp = ({ signUpWithEmail, registerUserRequest }) => {
 
 export default connect(
   null,
-  { signUpWithEmail, registerUserRequest }
+  { registerUserRequest }
 )(SignUp)

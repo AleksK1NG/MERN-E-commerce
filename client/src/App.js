@@ -14,7 +14,7 @@ import { GlobalStyle } from './global.styles'
 
 const Routes = React.lazy(() => import('./routes/routes'))
 
-const App = ({ checkUserSession, loadUserRequest }) => {
+const App = ({ loadUserRequest }) => {
   useEffect(() => {
     loadUserRequest()
   }, [loadUserRequest])
