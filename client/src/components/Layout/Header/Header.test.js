@@ -16,7 +16,7 @@ describe('Header component', () => {
       user: {
         uid: '123'
       },
-      sighOutFbAuth: mockSighOutFbAuth,
+      logoutUserRequest: mockSighOutFbAuth,
       showCartIcon: mockShowCartIcon
     }
 
