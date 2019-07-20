@@ -3,7 +3,10 @@ import {
   FETCH_COLLECTIONS_ERROR,
   FETCH_COLLECTIONS_REQUEST,
   FETCH_COLLECTIONS_SUCCESS,
-  STRIPE_PAYMENT_ERROR,
+  GET_SECTIONS_ERROR,
+  GET_SECTIONS_REQUEST,
+  GET_SECTIONS_SUCCESS,
+  STRIPE_PAYMENT_ERROR
 } from './shopConstants'
 // import SHOP_DATA from './shop.data'
 
@@ -13,7 +16,8 @@ import {
 export const initialState = {
   collections: null,
   isLoading: false,
-  error: null
+  error: null,
+  sections: null
 }
 
 const shopReducer = (state = initialState, action) =>
@@ -21,6 +25,7 @@ const shopReducer = (state = initialState, action) =>
     const { type, payload } = action
 
     switch (type) {
+      case GET_SECTIONS_REQUEST:
       case FETCH_COLLECTIONS_REQUEST:
         draft.isLoading = true
         return
@@ -31,6 +36,13 @@ const shopReducer = (state = initialState, action) =>
         draft.isLoading = false
         return
 
+      case GET_SECTIONS_SUCCESS:
+        draft.sections = payload.sections
+        draft.error = null
+        draft.isLoading = false
+        return
+
+      case GET_SECTIONS_ERROR:
       case STRIPE_PAYMENT_ERROR:
       case FETCH_COLLECTIONS_ERROR:
         draft.error = payload.error
