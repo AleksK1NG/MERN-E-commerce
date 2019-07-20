@@ -7,11 +7,13 @@ import {
   FETCH_COLLECTIONS_ERROR,
   FETCH_COLLECTIONS_REQUEST,
   FETCH_COLLECTIONS_SUCCESS,
+  GET_SECTIONS_REQUEST,
   STRIPE_PAYMENT_ERROR,
   STRIPE_PAYMENT_REQUEST
 } from './shopConstants'
 import { convertCollectionsSnapshotToMap, firestore } from '../../firebase/firebase.utils'
 import ApiService from '../../services/apiService'
+import { fetchCollectionsError, fetchCollectionsSuccess, getSectionsError, getSectionsSuccess } from './shopActions'
 
 export function* fetchCollectionsSaga() {
   try {
@@ -19,18 +21,10 @@ export function* fetchCollectionsSaga() {
     const snapshot = yield collectionRef.get()
     const collectionsMap = yield call(convertCollectionsSnapshotToMap, snapshot)
 
-    yield put({
-      type: FETCH_COLLECTIONS_SUCCESS,
-      payload: { collectionsMap }
-    })
-    // yield put(replace('/'))
-    // toast.success('You are registered ! =D')
+    yield put(fetchCollectionsSuccess(collectionsMap))
   } catch (error) {
     console.error(error)
-    yield put({
-      type: FETCH_COLLECTIONS_ERROR,
-      payload: { error }
-    })
+    yield put(fetchCollectionsError(error))
     toast.error(rejectError(error))
   }
 }
@@ -38,9 +32,7 @@ export function* fetchCollectionsSaga() {
 export function* stripePaymentSaga({ payload }) {
   try {
     const data = yield call(ApiService.stripePayment, payload.paymentData)
-
-    console.log('Stripe payment data response => ', data)
-    debugger
+    console.log('Stripe payments data => ', data)
     toast.success('You successfully make the payment ! =D ')
   } catch (error) {
     console.error(error)
@@ -52,9 +44,20 @@ export function* stripePaymentSaga({ payload }) {
   }
 }
 
+export function* getAllSectionsSaga() {
+  try {
+    const { data } = yield call(ApiService.getAllSections)
+    yield put(getSectionsSuccess(data))
+  } catch (error) {
+    console.error(error)
+    yield put(getSectionsError(error))
+  }
+}
+
 export function* saga() {
   yield all([
     takeLatest(FETCH_COLLECTIONS_REQUEST, fetchCollectionsSaga),
-    takeLatest(STRIPE_PAYMENT_REQUEST, stripePaymentSaga)
+    takeLatest(STRIPE_PAYMENT_REQUEST, stripePaymentSaga),
+    takeLatest(GET_SECTIONS_REQUEST, getAllSectionsSaga)
   ])
 }
