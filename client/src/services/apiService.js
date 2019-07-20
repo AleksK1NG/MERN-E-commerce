@@ -5,10 +5,12 @@ import axios from 'axios'
  * */
 
 const apiUrls = {
-  USER_URL: '/api/v1/user',
+  BASE_URL: '/api/v1',
+  USER_URL: `/api/v1/user`,
   USER_REGISTER_URL: '/api/v1/user/register',
   USER_LOGIN_URL: '/api/v1/user/login',
-  USER_ME_URL: '/api/v1/user/me'
+  USER_ME_URL: '/api/v1/user/me',
+  GET_SECTIONS_URL: '/api/v1/section'
 }
 
 const STRIPE_PAYMENT_URL = '/payment'
@@ -60,6 +62,10 @@ class ApiService {
 
   stripePayment(paymentData) {
     return axios.post(STRIPE_PAYMENT_URL, paymentData)
+  }
+
+  getAllSections() {
+    return axios.get(apiUrls.GET_SECTIONS_URL)
   }
 }
 

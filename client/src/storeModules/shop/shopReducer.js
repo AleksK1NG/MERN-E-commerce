@@ -15,9 +15,9 @@ import {
  * */
 export const initialState = {
   collections: null,
-  isLoading: false,
+  isLoading: true,
   error: null,
-  sections: null
+  sections: null,
 }
 
 const shopReducer = (state = initialState, action) =>
@@ -26,6 +26,8 @@ const shopReducer = (state = initialState, action) =>
 
     switch (type) {
       case GET_SECTIONS_REQUEST:
+        draft.sectionsLoading = true
+        return
       case FETCH_COLLECTIONS_REQUEST:
         draft.isLoading = true
         return

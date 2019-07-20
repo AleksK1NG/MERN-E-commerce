@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import MenuItem from '../MenuItem/MenuItem'
-// import { sections } from './sections'
 
 import { DirectoryMenuContainer } from './Directory.styles'
 import { getSectionsRequest } from '../../storeModules/shop/shopActions'
@@ -14,6 +13,7 @@ export const Directory = ({ getSectionsRequest, sections, isLoading }) => {
   }, [getSectionsRequest])
 
   if (!sections || isLoading) return <Spinner />
+
   return (
     <DirectoryMenuContainer>
       {sections.map(({ _id, ...otherSectionProps }) => (
