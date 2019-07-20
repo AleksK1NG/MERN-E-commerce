@@ -17,7 +17,8 @@ connect()
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
-const userRoutes = require('./routes/userRoutes')
+const userRouter = require('./routes/userRoutes')
+const sectionRouter = require('./routes/sectionRoutes')
 
 // Start express app
 const app = express()
@@ -76,7 +77,9 @@ app.use(mongoSanitize())
 app.use(compression())
 
 // ROUTES
-app.use('/api/v1/user', userRoutes)
+app.use('/api/v1/user', userRouter)
+app.use('/api/v1/section', sectionRouter)
+
 app.get('/', (req, res) => {
   res.json({ message: 'Success' })
 })
