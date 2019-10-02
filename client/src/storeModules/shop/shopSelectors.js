@@ -35,3 +35,8 @@ export const shopLoadingSelector = createSelector(
   stateSelector,
   (state) => state.isLoading
 )
+
+export const sectionsSelector = createSelector(
+  stateSelector,
+  (state) => state.sections
+)
